@@ -1,0 +1,14 @@
+title: Clover Essays
+lang: ja
+
+url: "https://cloversx.github.io"
+baseurl: "/clover-site-ja"
+
+# hreflangのx-defaultを英語に寄せる
+x_default_lang: "en"
+
+markdown: kramdown
+kramdown:
+  input: GFM
+
+# GitHub Pages互換のため、余計なプラグインは使わない
