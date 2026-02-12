@@ -1,0 +1,11 @@
+title: Clover Essays
+lang: en
+
+url: "https://cloversx.github.io"
+baseurl: "/clover-site-en"
+
+x_default_lang: "en"
+
+markdown: kramdown
+kramdown:
+  input: GFM
