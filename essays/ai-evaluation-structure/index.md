@@ -5,7 +5,7 @@ lang: en
 slug: ai-evaluation-structure
 is_archive: false
 
-canonical_url: ""
+canonical_url: ""  # 空なら自動生成
 alt_url: "https://cloversx.github.io/clover-site-ja/essays/ai-evaluation-structure/"
 
 summary: "AI isn’t inherently dangerous—but evaluation-driven environments can amplify instability."
@@ -16,4 +16,5 @@ last_updated: 2026-02-06
 version_label: "Version 1"
 ---
 
+本文...
 Hello world (current version).
