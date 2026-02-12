@@ -1,0 +1,27 @@
+---
+layout: page
+title: Essays
+permalink: /essays/
+---
+
+<ul class="essay-list">
+  {%- assign items = site.pages | where: "layout", "essay" | where_exp: "p", "p.is_archive != true" -%}
+  {%- assign items = items | sort: "last_updated" | reverse -%}
+
+  {%- for p in items -%}
+    <li>
+      <a href="{{ site.baseurl }}{{ p.url }}">{{ p.title }}</a>
+      {%- if p.summary and p.summary != "" -%}
+        <div class="muted">{{ p.summary }}</div>
+      {%- endif -%}
+      {%- if p.last_updated -%}
+        <div class="muted"><small>Updated: {{ p.last_updated }}</small></div>
+      {%- endif -%}
+    </li>
+  {%- endfor -%}
+</ul>
+
+<style>
+.essay-list { padding-left: 18px; }
+.muted { color: #555; margin-top: 4px; }
+</style>
