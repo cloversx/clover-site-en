@@ -4,6 +4,11 @@
 {%- assign page_title = page.title | default: site.title -%}
 <title>{{ page_title }}{% if page.title %} | {{ site.title }}{% endif %}</title>
 
+{%- comment -%}
+canonical_url:
+- page.canonical_url があればそれを使う
+- 空/未定義なら site.url + site.baseurl + page.url で自動生成
+{%- endcomment -%}
 {%- assign auto_canonical = site.url | append: site.baseurl | append: page.url -%}
 {%- assign canonical = page.canonical_url -%}
 {%- if canonical == nil or canonical == "" -%}
@@ -11,6 +16,10 @@
 {%- endif -%}
 <link rel="canonical" href="{{ canonical }}">
 
+{%- comment -%}
+description / OG
+summary があれば優先し、なければ site.description（未設定なら出さない）
+{%- endcomment -%}
 {%- assign desc = page.summary | default: site.description -%}
 {%- if desc and desc != "" -%}
 <meta name="description" content="{{ desc | escape }}">
@@ -21,18 +30,33 @@
 <meta property="og:url" content="{{ canonical }}">
 <meta property="og:type" content="article">
 
+{%- comment -%}
+hreflang:
+- 現行版だけ（is_archive != true）
+- alt_url は空文字でもOKだが、安全判定（nil/""を弾く）
+- x-default は英語に寄せる（ENならself、JAならalt_urlがあればそっち）
+{%- endcomment -%}
 {%- assign is_archive = page.is_archive -%}
 {%- if is_archive != true -%}
   <link rel="alternate" hreflang="{{ site.lang }}" href="{{ canonical }}">
 
   {%- assign alt = page.alt_url -%}
   {%- if alt and alt != "" -%}
-    {%- assign alt_lang = "ja" -%}
+    {%- assign alt_lang = "en" -%}
+    {%- if site.lang == "en" -%}{%- assign alt_lang = "ja" -%}{%- endif -%}
     <link rel="alternate" hreflang="{{ alt_lang }}" href="{{ alt }}">
   {%- endif -%}
 
   {%- if site.x_default_lang == "en" -%}
-    <link rel="alternate" hreflang="x-default" href="{{ canonical }}">
+    {%- if site.lang == "en" -%}
+      <link rel="alternate" hreflang="x-default" href="{{ canonical }}">
+    {%- else -%}
+      {%- if alt and alt != "" -%}
+        <link rel="alternate" hreflang="x-default" href="{{ alt }}">
+      {%- else -%}
+        <link rel="alternate" hreflang="x-default" href="{{ canonical }}">
+      {%- endif -%}
+    {%- endif -%}
   {%- endif -%}
 {%- endif -%}
 
