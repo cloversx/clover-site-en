@@ -5,6 +5,12 @@ permalink: /essays/
 ---
 
 <ul class="essay-list">
+  {%- comment -%}
+  “現行版だけ”を一覧に出す：
+  - essays/<slug>/index.md は is_archive: false
+  - アーカイブ(v1 etc)は is_archive: true なので除外
+  {%- endcomment -%}
+
   {%- assign items = site.pages | where: "layout", "essay" | where_exp: "p", "p.is_archive != true" -%}
   {%- assign items = items | sort: "last_updated" | reverse -%}
 
