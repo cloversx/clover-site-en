@@ -20,7 +20,12 @@ canonical_url:
 description / OG
 summary があれば優先し、なければ site.description（未設定なら出さない）
 {%- endcomment -%}
-{%- assign desc = page.summary | default: site.description -%}
+{%- if page.url == "/" -%}
+  {%- assign desc = site.description -%}
+{%- else -%}
+  {%- assign desc = page.summary | default: site.description -%}
+{%- endif -%}
+{%- comment -%}{%- assign desc = page.summary | default: site.description -%}{%- endcomment -%}
 {%- if desc and desc != "" -%}
 <meta name="description" content="{{ desc | escape }}">
 <meta property="og:description" content="{{ desc | escape }}">
