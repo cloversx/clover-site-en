@@ -10,8 +10,8 @@ Writing to think, not to conclude.
 技術、社会、人の経験を行き来しながら考えています。
 答えを出すためではなく、思考と共にあるために書いています。
 
-A quiet canonical archive for long-term preservation.
-Mirrors may exist elsewhere.
+- A quiet canonical archive for long-term preservation.
+- Mirrors may exist elsewhere.
 
 {% comment %}
 Short bio / purpose of this archive.
