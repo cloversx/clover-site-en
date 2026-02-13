@@ -1,0 +1,180 @@
+---
+
+Cloudflare Pages　clover-s.org プロフィールとリンク集 / 名刺ページ / HUB　（現在のところはcloverx.orgもclover-s.orgにリダイレクトしている）
+
+　⇒　Github Pages　cloversx.github.io（GitHub Pagesのユーザーサイト）　英語版ブログ記事サイトと日本語版ブログ記事サイトへのリンク
+
+　　⇒　Github Pages　cloversx.github.io/clover-site-en（GitHub Pagesのプロジェクトサイト）　英語版ブログ記事サイト
+　　　　全記事 / 全バージョン / 本家（本拠地・本体・原典・正典・canonical） / 継続更新 / SEO資産育成 / 思想アーカイブ（書庫・ログ・ テーマ性や思想の蓄積と集約の拠点）
+
+　　　⇒　現行版
+
+　　　⇒　アーカイブ（v1.md, v2.md ...)　SEO対策で現行版とは別URL
+
+　　⇒　Github Pages　cloversx.github.io/clover-site-ja（GitHub Pagesのプロジェクトサイト）　日本語版ブログ記事サイト
+　　　　英語版サイトに同じ
+
+　　　⇒　現行版
+
+　　　⇒　アーカイブ（v1.md, v2.md ...)　SEO対策で現行版とは別URL
+
+　⇒　Substack　substack.com　読者登録 / 固定読者 / メールリスト / 読者向け配信 / 読まれる拠点（配信拠点） / 思想の雑誌　一定の記事のミラーのみ投稿（厳選ミラー）
+
+　　⇒　現行版のミラー　cloversxen.substack.com　英語版
+
+　　⇒　現行版のミラー　cloversxja.substack.com　日本語版
+
+　　⇒　未定　　　　　　cloversx.substack.com　リサーブ
+
+　⇒　Medium　medium.com　配信 / 配布/ 拡散 / 読者獲得・導線 / 掲示板的な場所 / 英語版拡散用ミラー　代表作・議論になりそうな記事は「全文（フル）」で、それ以外は「要約＋本家リンク」（SEO評価）
+
+　　⇒　現行版のミラー　medium.com/@clover.s　英語版
+
+　⇒　note　note.com　日本語版拡散用ミラー　代表作・議論になりそうな記事は「全文（フル）」で、それ以外は「要約＋本家リンク」（SEO評価）
+
+　　⇒　現行版のミラー　note.com/clover_s　日本語版
+
+　⇒　Zenn　zenn.dev　技術寄りの記事だけ（コード / 技術 / 実装ノウハウ 専用）（思想記事は評価が下がるので出さない）　要約＋リンクだけ　（現在未投稿）
+
+　　⇒　選択記事　zenn.dev/cloverx　日本語版のみ？
+
+　⇒　Quiita　qiita.com　技術寄りの記事だけ（コード / 技術 / 実装ノウハウ 専用）（思想記事は評価が下がるので出さない）　要約＋リンクだけ　（現在未投稿）
+
+　　⇒　選択記事　qiita.com/cloverx　日本語版のみ？
+
+　⇒　LessWrong　lesswrong.com　議論発生装置　リンクのみ（リンク先は常に本家 or Substack）　サイトの趣旨や文化に合う記事についてのみ投稿
+
+　　⇒　選択記事　www.lesswrong.com/users/clover-s
+
+　⇒　Hacker News　news.ycombinator.com　議論発生装置　リンクのみ（リンク先は常に本家 or Substack）　サイトの趣旨や文化に合う記事についてのみ投稿
+
+　　⇒　選択記事　news.ycombinator.com/user?id=clover-s
+
+　⇒　X（旧Twitter）　x.com　導線・宣伝・拡散用　リンクのみ（リンク先は常に本家 or Substack）
+
+　　⇒　記事の導線　x.com/cloverx_s
+
+　⇒　Githubプロジェクト　github.com　Projects / code
+
+　　⇒　コードなど　github.com/cloversx/～
+
+---
+
+日本語版と英語版の記事に相互リンクを記載するとベスト
+
+
+英語記事末尾：
+
+日本語版: [日本語版記事URL]
+
+
+日本語記事末尾：
+
+English version: [英語版記事URL]
+
+---
+
+slugは言語によって変えるのがベスト（SEO運用）
+　⇒　その後変更。言語間でslugが同じでも clover-site-en / clover-site-ja のようにURLが異なるならSEO的にも問題にはなりにくいし、言語間でslugを同じにした方が言語間の相互リンクも管理しやすいので言語によって変えずに同じにすることにした。
+
+英語例：
+
+ai-evaluation-structure-environment-alignment
+ai-evaluation-structure-ai-safety
+evaluation-structure-environment-alignment
+ai-evaluation-structure
+moltbook-analysis
+
+日本語例：
+
+evaluation-structure-ja
+ai-hyoka-kozo-kankyo-alignment
+hyoka-kozo-kankyo-alignment
+
+---
+
+slugは言語によってだけ変えて、サイトごとには変えずに同じにする。
+検索エンジンが「同じslug＝同じ記事」と理解しやすくなる。
+　⇒　外部プラットフォームのサイトではslugをコントロールできないことが多いのでサイト間で異なっても仕方がない。canonicalで対応。
+
+---
+
+同一テキストを複数サイトに増やすと検索的に重複コンテンツの塊になってしまい、本家リンク（canonical）を付けても数が多いと評価が薄まってしまいSEO的にかなり不利。（評価が分散）
+
+記事の全文（フル本文）を投稿するのは最大4か所までを目安とする。（SEO運用）
+ただし、Googleは「数」よりも「canonicalが明確か」を見るので、
+
+全フル記事に必ず本家URLを書くこと
+
+が重要。
+
+---
+
+必要に応じてサイトのAbout、固定ページ、プロフィールなどに以下のような内容を記載
+
+Canonical archive: [本家サイトのトップページのURL（記事内に記載するなら記事URLのみにし混ぜない）]
+
+---
+
+ミラー記事の冒頭には以下の記載（SEO運用）
+
+Canonical version (continuously updated):
+[本家サイトの記事のURL]
+
+---
+
+必要に応じて本家サイトの記事のVersion欄の下に以下のような内容を記載
+
+This article was first drafted and published on [Medium / note / etc], and is now maintained and updated here as the canonical version.
+
+---
+
+記事の更新（SEO運用）
+
+現行版や現行版ミラーは同じURLに上書き更新。過去のアーカイブは別URLで管理
+
+記事を更新する際には同じサイトに別バージョンの記事を投稿せずに元の記事を更新する。（同じサイトに異なるバージョンの記事を置かない）
+更新前の記事を残す場合にはアーカイブとして別サイトや別URLに置く。
+
+---
+
+記事を再編集（Rewritten / Updated / Annotated edition）して出す場合には、例えば、“Revisited: AI and Evaluation Structures (2026 edition)”のようにして出す。
+
+旧記事をベースに今の視点で書き直す、加筆・整理する場合などに以下のようにして出す。
+
+“2026 revision”
+“Updated perspective”
+“Reframed edition”
+
+例：This is the refined edition after discussions on HN and LessWrong.
+
+---
+
+更新した記事の末尾のバージョン欄には以下のように記載
+
+Changelog
+
+Version 2 (YYYY–MM–DD): [e.g. Added section on X]
+Version 3 (YYYY–MM–DD): [e.g. Clarified Y]
+
+Archived version 1:
+[URL]
+
+or
+
+Archived previous versions:
+Version 1 (YYYY–MM–DD):
+[URL]
+
+or
+
+Archived previous versions:
+[URL]
+
+v1.md / v2.md / v3.mdのような過去のスナップショットのアーカイブ記事にはアーカイブされたバージョンの情報を記載する必要は必ずしもないが、以下のように「これは旧版です」と明記するとSEO事故を防げる。
+
+This is an archived snapshot (Version 1).
+The current canonical version is here:
+[URL]
+
+---
