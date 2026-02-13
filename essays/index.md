@@ -56,7 +56,8 @@ permalink: /essays/
   {%- endfor -%}
 </ul>
 
-<hr class="section-divider" />
+{% comment %}<hr class="section-divider" />{% endcomment %}
+
 {% endif %}
 
 ## Latest (All essays)
