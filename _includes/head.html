@@ -39,6 +39,11 @@ summary があれば優先し、なければ site.description（未設定なら�
 <meta property="og:image" content="{{ site.url }}{{ og_image }}">
 <meta name="twitter:card" content="summary_large_image">
 
+<link rel="icon" type="image/png" sizes="32x32" href="{{ site.baseurl }}/assets/img/favicon-32.png">
+<link rel="icon" type="image/png" sizes="192x192" href="{{ site.baseurl }}/assets/img/favicon-192.png">
+<link rel="apple-touch-icon" sizes="180x180" href="{{ site.baseurl }}/assets/img/apple-touch-icon.png">
+{%- comment -%}<link rel="icon" href="{{ site.baseurl }}/favicon.ico">{%- endcomment -%}
+
 {%- comment -%}
 hreflang:
 - 現行版だけ（is_archive != true）
