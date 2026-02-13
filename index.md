@@ -3,7 +3,7 @@ layout: page
 title: ""
 ---
 
-### Clover Essays
+### - Clover Essays -
 
 Welcome.
 
