@@ -67,6 +67,10 @@ Welcome.
   {%- endfor -%}
 </ul>
 
+<hr class="section-divider" />
+
+{%- endif -%}
+
 ## Latest {% comment %}（最新）{% endcomment %}
 {% comment %}#### Latest {% comment %}（最新）{% endcomment %}{% endcomment %}
 
