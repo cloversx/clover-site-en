@@ -2,7 +2,7 @@
 layout: essay
 title: "AI Isn’t Dangerous. Putting AI Inside an “Evaluation Structure” Is."
 summary: "AI isn’t inherently dangerous—but evaluation-driven environments can amplify instability."
-lang: en
+lang: ja
 slug: ai-evaluation-structure
 is_archive: false
 version: 2
