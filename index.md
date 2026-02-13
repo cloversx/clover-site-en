@@ -3,7 +3,10 @@ layout: page
 title: ""
 ---
 
-# - Clover Essays -
+# Clover Essays
+{% comment %}
+### - Clover Essays -
+{% endcomment %}
 
 Welcome.
 
@@ -23,12 +26,18 @@ A quiet canonical archive for long-term preservation.
 
 {% comment %}---{% endcomment %}
 
+## Featured {% comment %}（代表作）{% endcomment %}
+{% comment %}
 #### Featured {% comment %}（代表作）{% endcomment %}
+{% endcomment %}
 
 {% comment %}- (Add links to representative essays here){% endcomment %}
 - [AI Isn’t Dangerous. Putting AI Inside an “Evaluation Structure” Is.]({{ site.baseurl }}/essays/ai-evaluation-structure/)
 
+## Latest {% comment %}（最新）{% endcomment %}
+{% comment %}
 #### Latest {% comment %}（最新）{% endcomment %}
+{% endcomment %}
 
 {% comment %}- (Add links to latest essays here){% endcomment %}
 - [AI Isn’t Dangerous. Putting AI Inside an “Evaluation Structure” Is.]({{ site.baseurl }}/essays/ai-evaluation-structure/)
