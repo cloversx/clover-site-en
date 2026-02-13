@@ -1,0 +1,74 @@
+---
+layout: null
+permalink: /sitemap.xml
+---
+
+<?xml version="1.0" encoding="UTF-8"?>
+<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
+
+{%- assign pages = site.pages | where_exp: "p", "p.sitemap != false" -%}
+
+{%- for p in pages -%}
+  {%- comment -%}
+  除外：sitemap自体 / robots / 静的ファイル / feed等
+  {%- endcomment -%}
+  {%- if p.url == "/sitemap.xml" -%}{%- continue -%}{%- endif -%}
+  {%- if p.url == "/robots.txt" -%}{%- continue -%}{%- endif -%}
+  {%- if p.url contains ".css" or p.url contains ".js" or p.url contains ".png" or p.url contains ".jpg" or p.url contains ".jpeg" or p.url contains ".webp" or p.url contains ".svg" -%}
+    {%- continue -%}
+  {%- endif -%}
+
+  {%- comment -%}
+  loc：canonical_url があればそれを優先。なければ site.url+baseurl+page.url
+  {%- endcomment -%}
+  {%- assign loc = p.canonical_url -%}
+  {%- if loc == nil or loc == "" -%}
+    {%- assign loc = site.url | append: site.baseurl | append: p.url -%}
+  {%- endif -%}
+
+  {%- comment -%}
+  lastmod：last_updated → first_published の順で採用（なければ出さない）
+  {%- endcomment -%}
+  {%- assign lastmod = "" -%}
+  {%- if p.last_updated and p.last_updated != "" -%}
+    {%- assign lastmod = p.last_updated | date_to_xmlschema -%}
+  {%- elsif p.first_published and p.first_published != "" -%}
+    {%- assign lastmod = p.first_published | date_to_xmlschema -%}
+  {%- endif -%}
+
+  {%- comment -%}
+  priority のルール（例）
+  - トップ：1.0
+  - /essays/：0.9
+  - Featured（現行）：0.8
+  - 通常（現行）：0.6
+  - About等の固定ページ：0.5
+  - アーカイブ：0.3
+  {%- endcomment -%}
+  {%- assign pr = "0.5" -%}
+
+  {%- if p.url == "/" -%}
+    {%- assign pr = "1.0" -%}
+  {%- elsif p.url == "/essays/" -%}
+    {%- assign pr = "0.9" -%}
+  {%- elsif p.layout == "essay" -%}
+    {%- if p.is_archive == true -%}
+      {%- assign pr = "0.3" -%}
+    {%- elsif p.featured == true -%}
+      {%- assign pr = "0.8" -%}
+    {%- else -%}
+      {%- assign pr = "0.6" -%}
+    {%- endif -%}
+  {%- elsif p.url == "/about/" -%}
+    {%- assign pr = "0.5" -%}
+  {%- endif -%}
+
+  <url>
+    <loc>{{ loc }}</loc>
+    {%- if lastmod != "" -%}<lastmod>{{ lastmod }}</lastmod>{%- endif -%}
+    <priority>{{ pr }}</priority>
+  </url>
+
+{%- endfor -%}
+
+</urlset>
