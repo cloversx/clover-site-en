@@ -1,0 +1,16 @@
+# title: Clover Essays
+title: "Clover Essays"
+description: "A canonical archive for long-term preservation and structured essays on AI and system design."
+lang: en
+
+url: "https://cloversx.github.io"
+baseurl: "/clover-site-en"
+
+# hreflangのx-defaultを英語に寄せる
+x_default_lang: "en"
+
+markdown: kramdown
+kramdown:
+  input: GFM
+
+# GitHub Pages互換のため、余計なプラグインは使わない
