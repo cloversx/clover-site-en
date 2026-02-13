@@ -11,6 +11,12 @@
       <a class="site-title" href="{{ site.baseurl }}/">{{ site.title }}</a>
 
       <nav class="nav">
+        <a href="{{ site.baseurl }}/essays/">Essays</a>
+        <a href="{{ site.baseurl }}/about/">About</a>
+      </nav>
+
+      {% comment %}
+      <nav class="nav">
         {% if site.lang == "ja" %}
           <a href="{{ site.baseurl }}/essays/">Essays</a> <!-- エッセイ -->
           <a href="{{ site.baseurl }}/about/">About</a> <!-- 概要 -->
@@ -19,6 +25,7 @@
           <a href="{{ site.baseurl }}/about/">About</a>
         {% endif %}
       </nav>
+      {% endcomment %}
     </div>
   </header>
 
