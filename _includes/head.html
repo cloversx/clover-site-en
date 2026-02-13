@@ -26,7 +26,8 @@ summary があれば優先し、なければ site.description（未設定なら�
 <meta property="og:description" content="{{ desc | escape }}">
 {%- endif -%}
 
-<meta property="og:title" content="{{ page_title | escape }}">
+<meta property="og:title" content="{{ page.title | default: site.title | escape }}">
+{%- comment -%}<meta property="og:title" content="{{ page_title | escape }}">{%- endcomment -%}
 <meta property="og:url" content="{{ canonical }}">
 <meta property="og:type" content="article">
 
