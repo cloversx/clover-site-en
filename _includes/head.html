@@ -30,7 +30,11 @@ summary があれば優先し、なければ site.description（未設定なら�
 <meta property="og:url" content="{{ canonical }}">
 <meta property="og:type" content="article">
 
-{%- assign og_image = page.og_image | default: site.baseurl | append: "/assets/img/og-default.png" -%}
+{%- if page.og_image and page.og_image != "" -%}
+  {%- assign og_image = page.og_image -%}
+{%- else -%}
+  {%- assign og_image = site.baseurl | append: "/assets/img/og-default.png" -%}
+{%- endif -%}
 <meta property="og:image" content="{{ site.url }}{{ og_image }}">
 <meta name="twitter:card" content="summary_large_image">
 
