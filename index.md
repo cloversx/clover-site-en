@@ -23,8 +23,8 @@ A quiet canonical archive for long-term preservation.
 
 ---
 
-Featured [](（代表作）)
+Featured {% comment %}（代表作）{% endcomment %}
 - (Add links to representative essays here)
 
-Latest [](（最新）)
+Latest {% comment %}（最新）{% endcomment %}
 - (Add links to latest essays here)
