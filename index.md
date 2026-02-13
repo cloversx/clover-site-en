@@ -34,6 +34,10 @@ Welcome.
 {% comment %}- (Add links to latest essays here){% endcomment %}
 {% comment %}- [AI Isn’t Dangerous. Putting AI Inside an “Evaluation Structure” Is.]({{ site.baseurl }}/essays/ai-evaluation-structure/){% endcomment %}
 
+{% comment %}
+注意点（1つだけ）
+この sort_date 方式は 記事数が増えても普通に動くけど、Liquidの制約で「配列内の各要素にsort_dateを付ける」作業をしてる。GitHub Pagesでも大丈夫な書き方だけど、もし将来おかしな挙動が出たら、次善策として「日付を文字列に統一してソート」でもOK（YYYY-MM-DD は文字列でもソートが崩れない）。
+{% endcomment %}
 <ul class="essay-list">
 {%- assign items = site.pages
   | where: "layout", "essay"
