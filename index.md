@@ -23,8 +23,12 @@ A quiet canonical archive for long-term preservation.
 
 ---
 
-Featured {% comment %}（代表作）{% endcomment %}
-- (Add links to representative essays here)
+## Featured {% comment %}（代表作）{% endcomment %}
 
-Latest {% comment %}（最新）{% endcomment %}
-- (Add links to latest essays here)
+{% comment %}- (Add links to representative essays here){% endcomment %}
+- [AI Isn’t Dangerous. Putting AI Inside an “Evaluation Structure” Is.]({{ site.baseurl }}/essays/ai-evaluation-structure/)
+
+## Latest {% comment %}（最新）{% endcomment %}
+
+{% comment %}- (Add links to latest essays here){% endcomment %}
+- [AI Isn’t Dangerous. Putting AI Inside an “Evaluation Structure” Is.]({{ site.baseurl }}/essays/ai-evaluation-structure/)
