@@ -67,7 +67,7 @@ Welcome.
   {%- endfor -%}
 </ul>
 
-<hr class="section-divider" />
+{% comment %}<hr class="section-divider" />{% endcomment %}
 
 {%- endif -%}
 
