@@ -32,4 +32,42 @@ Welcome.
 {% comment %}#### Latest {% comment %}（最新）{% endcomment %}{% endcomment %}
 
 {% comment %}- (Add links to latest essays here){% endcomment %}
-- [AI Isn’t Dangerous. Putting AI Inside an “Evaluation Structure” Is.]({{ site.baseurl }}/essays/ai-evaluation-structure/)
+{% comment %}- [AI Isn’t Dangerous. Putting AI Inside an “Evaluation Structure” Is.]({{ site.baseurl }}/essays/ai-evaluation-structure/){% endcomment %}
+
+<ul class="essay-list">
+{%- assign items = site.pages
+  | where: "layout", "essay"
+  | where_exp: "p", "p.is_archive != true"
+-%}
+
+{%- comment -%}
+sortキーの安定化：last_updated → first_published → 0000-00-00
+{%- endcomment -%}
+{%- for p in items -%}
+  {%- if p.last_updated and p.last_updated != "" -%}
+    {%- assign p.sort_date = p.last_updated -%}
+  {%- elsif p.first_published and p.first_published != "" -%}
+    {%- assign p.sort_date = p.first_published -%}
+  {%- else -%}
+    {%- assign p.sort_date = "0000-00-00" -%}
+  {%- endif -%}
+{%- endfor -%}
+
+{%- assign latest = items | sort: "sort_date" | reverse -%}
+
+{%- for p in latest limit:3 -%}
+  <li>
+    <a href="{{ site.baseurl }}{{ p.url }}">{{ p.title }}</a>
+    {%- if p.summary and p.summary != "" -%}
+      <div class="muted">{{ p.summary }}</div>
+    {%- endif -%}
+    {%- if p.last_updated and p.last_updated != "" -%}
+      <div class="muted"><small>Updated: {{ p.last_updated }}</small></div>
+    {%- elsif p.first_published and p.first_published != "" -%}
+      <div class="muted"><small>Published: {{ p.first_published }}</small></div>
+    {%- endif -%}
+  </li>
+{%- endfor -%}
+</ul>
+
+
