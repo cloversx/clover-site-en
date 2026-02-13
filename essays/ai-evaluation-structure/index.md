@@ -5,7 +5,7 @@ summary: "AI isn’t inherently dangerous—but evaluation-driven environments c
 lang: en
 slug: ai-evaluation-structure
 is_archive: false
-version: 1
+version: 2
 first_published: 2026-02-06
 last_updated: 2026-02-06
 
