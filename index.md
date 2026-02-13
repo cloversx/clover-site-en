@@ -28,6 +28,9 @@ Welcome.
 -%}
 
 {%- assign featured_items = all_items | where: "featured", true -%}
+
+{%- if featured_items.size > 0 -%}
+
 {%- assign ranked = featured_items
   | where_exp: "p", "p.featured_rank != nil"
   | sort: "featured_rank"
