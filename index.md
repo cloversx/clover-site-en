@@ -25,10 +25,8 @@ A quiet canonical archive for long-term preservation.
 {% endcomment %}
 
 {% comment %}
-この区切り線を入れてしまうと、# Clover Essaysの上にも余計な区切り線が入ってしまって上のナビ部分の下の線と二重線のようになってしまって見た目が悪い。
 ---
 {% endcomment %}
----
 
 ## Featured {% comment %}（代表作）{% endcomment %}
 {% comment %}
