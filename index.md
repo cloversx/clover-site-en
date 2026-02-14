@@ -38,6 +38,7 @@ Welcome.
 {% comment %}
 include は トリム無し（{% include ... %}）
 include 呼び出しは {%- をやめて {% にする
+Liquid の “空白トリム（{%- -%}）” が効きすぎて、見出し ## ... と <ul> が同じ行に連結されてしまう
 {% endcomment %}
 {% include essay-list-featured.html show_badge=false featured_style=false show_date=false %}
 
@@ -53,5 +54,6 @@ include 呼び出しは {%- をやめて {% にする
 {% comment %}
 include は トリム無し（{% include ... %}）
 include 呼び出しは {%- をやめて {% にする
+Liquid の “空白トリム（{%- -%}）” が効きすぎて、見出し ## ... と <ul> が同じ行に連結されてしまう
 {% endcomment %}
 {% include essay-list-latest.html limit=3 show_date=true %}
