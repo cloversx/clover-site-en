@@ -46,7 +46,7 @@
       <p>
         <strong>{% if is_ja %}アーカイブ{% else %}Archives{% endif %}:</strong>
         {%- for i in (1..prev) -%}
-          <a href="{{ site.baseurl }}/essays/{{ page.slug }}/v{{ i }}/"> v{{ i }} </a>{% unless forloop.last %} {% endunless %}
+          <a href="{{ site.baseurl }}/essays/{{ page.slug }}/v{{ i }}/">v{{ i }}</a>{% unless forloop.last %} {% endunless %}
         {%- endfor -%}
       </p>
     {%- endif -%}
