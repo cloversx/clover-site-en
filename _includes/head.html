@@ -1,0 +1,110 @@
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+
+{%- assign page_title = page.title | default: site.title -%}
+<title>{{ page_title }}{% if page.title %} | {{ site.title }}{% endif %}</title>
+
+{%- comment -%}
+canonical_url:
+- page.canonical_url があればそれを使う
+- 空/未定義なら site.url + site.baseurl + page.url で自動生成
+{%- endcomment -%}
+{%- assign auto_canonical = site.url | append: site.baseurl | append: page.url -%}
+{%- assign canonical = page.canonical_url -%}
+{%- if canonical == nil or canonical == "" -%}
+  {%- assign canonical = auto_canonical -%}
+{%- endif -%}
+<link rel="canonical" href="{{ canonical | escape }}">
+
+{%- comment -%}
+description / OG
+summary があれば優先し、なければ site.description（未設定なら出さない）
+{%- endcomment -%}
+{%- if page.url == "/" -%}
+  {%- assign desc = site.description -%}
+{%- else -%}
+  {%- assign desc = page.summary | default: site.description -%}
+{%- endif -%}
+{%- comment -%}{%- assign desc = page.summary | default: site.description -%}{%- endcomment -%}
+{%- if desc and desc != "" -%}
+<meta name="description" content="{{ desc | escape }}">
+<meta property="og:description" content="{{ desc | escape }}">
+{%- endif -%}
+
+<meta property="og:title" content="{{ page.title | default: site.title | escape }}">
+{%- comment -%}<meta property="og:title" content="{{ page_title | escape }}">{%- endcomment -%}
+<meta property="og:url" content="{{ canonical }}">
+{%- comment -%}
+og:typeの代表例
+article	記事ページ
+website	通常のWebページ
+profile	プロフィール
+product	商品ページ
+{%- endcomment -%}
+{%- if page.layout == "essay" and page.is_archive != true -%}
+  <meta property="og:type" content="article">
+{%- else -%}
+  <meta property="og:type" content="website">
+{%- endif -%}
+{%- comment -%}<meta property="og:type" content="article">{%- endcomment -%}
+
+{%- if page.layout == "essay" and page.is_archive != true -%}
+  <meta property="article:published_time" content="{{ page.first_published | date_to_xmlschema }}">
+  {%- if page.last_updated and page.last_updated != "" -%}
+    <meta property="article:modified_time" content="{{ page.last_updated | date_to_xmlschema }}">
+  {%- endif -%}
+{%- endif -%}
+
+{%- if page.og_image and page.og_image != "" -%}
+  {%- assign og_image = page.og_image -%}
+{%- else -%}
+  {%- assign og_image = site.baseurl | append: "/assets/img/og-default.png" -%}
+{%- endif -%}
+<meta property="og:image" content="{{ site.url }}{{ og_image }}">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="{{ page_title | escape }}">
+{%- if desc and desc != "" -%}
+<meta name="twitter:description" content="{{ desc | escape }}">
+{%- endif -%}
+<meta name="twitter:image" content="{{ site.url }}{{ og_image }}">
+{%- comment -%}
+<meta name="twitter:site" content="@cloverx_s">
+<meta name="twitter:creator" content="@cloverx_s">
+{%- endcomment -%}
+
+<link rel="icon" type="image/png" sizes="32x32" href="{{ site.baseurl }}/assets/img/favicon-32.png">
+<link rel="icon" type="image/png" sizes="192x192" href="{{ site.baseurl }}/assets/img/favicon-192.png">
+<link rel="apple-touch-icon" sizes="180x180" href="{{ site.baseurl }}/assets/img/apple-touch-icon.png">
+{%- comment -%}<link rel="icon" href="{{ site.baseurl }}/favicon.ico">{%- endcomment -%}
+
+{%- comment -%}
+hreflang:
+- 現行版だけ（is_archive != true）
+- alt_url は空文字でもOKだが、安全判定（nil/""を弾く）
+- x-default は英語に寄せる（ENならself、JAならalt_urlがあればそっち）
+{%- endcomment -%}
+{%- assign is_archive = page.is_archive -%}
+{%- if is_archive != true -%}
+  <link rel="alternate" hreflang="{{ site.lang }}" href="{{ canonical }}">
+
+  {%- assign alt = page.alt_url -%}
+  {%- if alt and alt != "" -%}
+    {%- assign alt_lang = "en" -%}
+    {%- if site.lang == "en" -%}{%- assign alt_lang = "ja" -%}{%- endif -%}
+    <link rel="alternate" hreflang="{{ alt_lang }}" href="{{ alt }}">
+  {%- endif -%}
+
+  {%- if site.x_default_lang == "en" -%}
+    {%- if site.lang == "en" -%}
+      <link rel="alternate" hreflang="x-default" href="{{ canonical }}">
+    {%- else -%}
+      {%- if alt and alt != "" -%}
+        <link rel="alternate" hreflang="x-default" href="{{ alt }}">
+      {%- else -%}
+        <link rel="alternate" hreflang="x-default" href="{{ canonical }}">
+      {%- endif -%}
+    {%- endif -%}
+  {%- endif -%}
+{%- endif -%}
+
+<link rel="stylesheet" href="{{ site.baseurl }}/assets/css/main.css">
