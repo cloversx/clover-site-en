@@ -36,7 +36,7 @@ Welcome.
 {% comment %}- [AI Isn’t Dangerous. Putting AI Inside an “Evaluation Structure” Is.]({{ site.baseurl }}/essays/ai-evaluation-structure/){% endcomment %}
 
 {% comment %}
-include は トリム無し（{% include ... %}）
+include は トリム無し「（{% include ... %}）」
 include 呼び出しは {%- をやめて {% にする
 Liquid の “空白トリム（{%- -%}）” が効きすぎて、見出し ## ... と <ul> が同じ行に連結されてしまう
 {% endcomment %}
@@ -52,7 +52,7 @@ Liquid の “空白トリム（{%- -%}）” が効きすぎて、見出し ## 
 {% comment %}- [AI Isn’t Dangerous. Putting AI Inside an “Evaluation Structure” Is.]({{ site.baseurl }}/essays/ai-evaluation-structure/){% endcomment %}
 
 {% comment %}
-include は トリム無し（{% include ... %}）
+include は トリム無し「（{% include ... %}）」
 include 呼び出しは {%- をやめて {% にする
 Liquid の “空白トリム（{%- -%}）” が効きすぎて、見出し ## ... と <ul> が同じ行に連結されてしまう
 {% endcomment %}
