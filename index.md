@@ -37,7 +37,6 @@ Welcome.
 
 {% comment %}
 include は トリム無し
-Liquid の “空白トリムが効きすぎて、見出し ## ... と <ul> が同じ行に連結されてしまう
 {% endcomment %}
 {% include essay-list-featured.html show_badge=false featured_style=false show_date=false %}
 
@@ -52,6 +51,5 @@ Liquid の “空白トリムが効きすぎて、見出し ## ... と <ul> が�
 
 {% comment %}
 include は トリム無し
-Liquid の “空白トリムが効きすぎて、見出し ## ... と <ul> が同じ行に連結されてしまう
 {% endcomment %}
 {% include essay-list-latest.html limit=3 show_date=true %}
