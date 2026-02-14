@@ -1,0 +1,24 @@
+{%- comment -%}
+Params:
+- limit: number (optional). If omitted, shows all.
+- show_date: true/false
+{%- endcomment -%}
+
+{%- assign items = site.pages
+  | where: "layout", "essay"
+  | where_exp: "p", "p.is_archive != true"
+  | sort: "last_updated"
+  | reverse
+-%}
+
+<ul class="essay-list">
+  {%- if include.limit and include.limit != "" -%}
+    {%- for p in items limit: include.limit -%}
+      {%- include essay-card.html page=p show_date=include.show_date -%}
+    {%- endfor -%}
+  {%- else -%}
+    {%- for p in items -%}
+      {%- include essay-card.html page=p show_date=include.show_date -%}
+    {%- endfor -%}
+  {%- endif -%}
+</ul>
