@@ -1,0 +1,74 @@
+name: Archive snapshot to private repo (on tag)
+
+on:
+  push:
+    tags:
+      - "v*"
+      - "archive/*"
+
+permissions:
+  contents: read
+
+concurrency:
+  group: archive-${{ github.ref }}
+  cancel-in-progress: false
+
+jobs:
+  archive:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout source at tag
+        uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+
+      - name: Set vars
+        id: vars
+        run: |
+          TAG_NAME="${GITHUB_REF_NAME}"
+          echo "tag=${TAG_NAME}" >> "$GITHUB_OUTPUT"
+          echo "src_repo=${GITHUB_REPOSITORY}" >> "$GITHUB_OUTPUT"
+
+      - name: Checkout archive repo
+        uses: actions/checkout@v4
+        with:
+          repository: ${{ secrets.ARCHIVE_REPO }}
+          token: ${{ secrets.ARCHIVE_TOKEN }}
+          path: archive
+          fetch-depth: 0
+
+      - name: Copy snapshot into archive repo
+        run: |
+          set -euo pipefail
+          TAG="${{ steps.vars.outputs.tag }}"
+          DEST="archive/snapshots/${TAG}"
+
+          mkdir -p "${DEST}"
+
+          # rsync: repo内の全ファイルをコピー（.gitは除外）
+          rsync -a --delete \
+            --exclude '.git' \
+            --exclude 'archive' \
+            ./ "${DEST}/"
+
+      - name: Commit and push
+        working-directory: archive
+        run: |
+          set -euo pipefail
+          TAG="${{ steps.vars.outputs.tag }}"
+          SRC="${{ steps.vars.outputs.src_repo }}"
+
+          git config user.name "archive-bot"
+          git config user.email "archive-bot@users.noreply.github.com"
+
+          git add "snapshots/${TAG}"
+
+          # 変更が無ければ何もしない（同じタグを再実行しても安全）
+          if git diff --cached --quiet; then
+            echo "No changes to commit."
+            exit 0
+          fi
+
+          git commit -m "Archive ${SRC}@${TAG}"
+          git push
