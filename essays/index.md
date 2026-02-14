@@ -19,7 +19,7 @@ Liquid の “空白トリムが効きすぎて、見出し ## ... と <ul> が�
 {% endcomment %}
 {% include essay-list-featured.html show_badge=true featured_style=true show_date=false %}
 
-<hr class="section-divider" />
+{% comment %}<hr class="section-divider" />{% endcomment %}
 {%- endif -%}
 
 ## Latest (All essays)
