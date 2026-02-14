@@ -1,0 +1,159 @@
+{%- comment -%}
+==================================================
+essay_meta.html
+Slug非依存・完全版
+
+対応：
+
+・現行版：
+  - Version表示
+  - First published
+  - Last updated
+  - アーカイブリンク自動生成
+
+・アーカイブ版：
+  - Archive version表示
+  - 現行版リンク自動生成
+
+・slug依存ゼロ（page.urlベース）
+・数値versionモデル対応（1,2,3…）
+・GitHub Pages完全互換
+
+==================================================
+{%- endcomment -%}
+
+{%- assign is_archive = page.is_archive -%}
+{%- assign is_ja = false -%}
+{%- if page.lang == "ja" or site.lang == "ja" -%}
+  {%- assign is_ja = true -%}
+{%- endif -%}
+
+<div class="essay-meta">
+
+{%- comment -%}
+========================================
+アーカイブページ
+========================================
+{%- endcomment -%}
+
+{%- if is_archive -%}
+
+  {%- if page.archive_version -%}
+    <p>
+      <strong>
+        {% if is_ja %}アーカイブ:{% else %}Archive:{% endif %}
+      </strong>
+      <span class="archive-version">v{{ page.archive_version }}</span>
+    </p>
+  {%- endif -%}
+
+  {%- comment -%}
+  page.url 例：
+  /essays/slug/v1/
+
+  → split "/v"
+  → /essays/slug/
+  {%- endcomment -%}
+
+  {%- assign parts = page.url | split: "/v" -%}
+  {%- assign current_path = parts[0] | append: "/" -%}
+
+  <p>
+    <a href="{{ site.baseurl }}{{ current_path }}">
+      {% if is_ja %}現行版へ{% else %}Go to current version{% endif %}
+    </a>
+  </p>
+
+
+{%- comment -%}
+========================================
+現行ページ
+========================================
+{%- endcomment -%}
+
+{%- else -%}
+
+  {%- if page.version -%}
+    <p>
+      <strong>
+        {% if is_ja %}バージョン:{% else %}Version:{% endif %}
+      </strong>
+      {{ page.version }}
+    </p>
+  {%- endif -%}
+
+  {%- if page.first_published -%}
+    <p>
+      <strong>
+        {% if is_ja %}初公開:{% else %}First published:{% endif %}
+      </strong>
+      {{ page.first_published }}
+    </p>
+  {%- endif -%}
+
+  {%- if page.last_updated -%}
+    <p>
+      <strong>
+        {% if is_ja %}最終更新:{% else %}Last updated:{% endif %}
+      </strong>
+      {{ page.last_updated }}
+    </p>
+  {%- endif -%}
+
+
+  {%- comment -%}
+  ========================================
+  アーカイブリンク生成（slug非依存）
+  ========================================
+  現在URL：
+  /essays/slug/
+
+  → /essays/slug/v1/
+  → /essays/slug/v2/
+  → ...
+  ========================================
+  {%- endcomment -%}
+
+  {%- if page.version and page.version > 1 -%}
+
+    <p>
+
+      <strong>
+        {% if is_ja %}アーカイブ:{% else %}Archives:{% endif %}
+      </strong>
+
+      <span class="archive-links">
+
+      {%- assign max = page.version | minus: 1 -%}
+
+      {%- for i in (1..max) -%}
+
+        <a href="{{ site.baseurl }}{{ page.url }}v{{ i }}/"
+           class="archive-link">v{{ i }}</a>
+
+      {%- endfor -%}
+
+      </span>
+
+    </p>
+
+  {%- endif -%}
+
+
+  {%- if page.tags -%}
+    <p>
+
+      <strong>
+        {% if is_ja %}タグ:{% else %}Tags:{% endif %}
+      </strong>
+
+      {%- for t in page.tags -%}
+        <span class="tag">{{ t }}</span>
+      {%- endfor -%}
+
+    </p>
+  {%- endif -%}
+
+{%- endif -%}
+
+</div>
