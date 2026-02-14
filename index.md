@@ -35,7 +35,11 @@ Welcome.
 {% comment %}- (Add links to representative essays here){% endcomment %}
 {% comment %}- [AI Isn’t Dangerous. Putting AI Inside an “Evaluation Structure” Is.]({{ site.baseurl }}/essays/ai-evaluation-structure/){% endcomment %}
 
-{%- include essay-list-featured.html show_badge=false featured_style=false show_date=false -%}
+{% comment %}
+include は トリム無し（{% include ... %}）
+include 呼び出しは {%- をやめて {% にする
+{% endcomment %}
+{% include essay-list-featured.html show_badge=false featured_style=false show_date=false %}
 
 {% comment %}<hr class="section-divider" />{% endcomment %}
 {%- endif -%}
@@ -46,4 +50,8 @@ Welcome.
 {% comment %}- (Add links to latest essays here){% endcomment %}
 {% comment %}- [AI Isn’t Dangerous. Putting AI Inside an “Evaluation Structure” Is.]({{ site.baseurl }}/essays/ai-evaluation-structure/){% endcomment %}
 
-{%- include essay-list-latest.html limit=3 show_date=true -%}
+{% comment %}
+include は トリム無し（{% include ... %}）
+include 呼び出しは {%- をやめて {% にする
+{% endcomment %}
+{% include essay-list-latest.html limit=3 show_date=true %}
