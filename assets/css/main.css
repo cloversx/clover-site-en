@@ -157,10 +157,12 @@ a:hover{ text-decoration:underline; }
   margin-bottom: 18px;
 }
 
-/* essay_meta の Archives リンクが詰まるのを防ぐ */
+/* essay_meta の Archives リンクが詰まるのを防ぐ 
+   最初のリンクの左が詰まるしmargin-leftも入れるとリンク間があきすぎてしまうのでテンプレで &nbsp; を入れて対応
+*/
 .essay-meta a{
   display: inline-block;
-  margin-right: 0.5rem;
+  /* margin-right: 0.5rem; */
 }
 
 .tag{
