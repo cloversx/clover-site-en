@@ -1,0 +1,19 @@
+{%- assign p = include.page -%}
+
+<li class="essay-card{% if include.featured and include.featured_style %} is-featured{% endif %}">
+  <div class="card-top">
+    <a href="{{ site.baseurl }}{{ p.url }}">{{ p.title }}</a>
+
+    {%- if include.show_badge -%}
+      <span class="badge">Featured</span>
+    {%- endif -%}
+  </div>
+
+  {%- if p.summary and p.summary != "" -%}
+    <div class="muted">{{ p.summary }}</div>
+  {%- endif -%}
+
+  {%- if include.show_date and p.last_updated and p.last_updated != "" -%}
+    <div class="muted"><small>Updated: {{ p.last_updated }}</small></div>
+  {%- endif -%}
+</li>
