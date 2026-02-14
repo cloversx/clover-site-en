@@ -1,0 +1,50 @@
+{%- comment -%}
+Params:
+- show_badge: true/false
+- featured_style: true/false  (background etc.)
+- show_date: true/false
+{%- endcomment -%}
+
+{%- assign all_items = site.pages
+  | where: "layout", "essay"
+  | where_exp: "p", "p.is_archive != true"
+-%}
+
+{%- assign items = all_items | where: "featured", true -%}
+
+{%- if items and items.size > 0 -%}
+
+  {%- assign ranked = items
+    | where_exp: "p", "p.featured_rank != nil"
+    | sort: "featured_rank"
+  -%}
+
+  {%- assign unranked = items
+    | where_exp: "p", "p.featured_rank == nil"
+    | sort: "last_updated"
+    | reverse
+  -%}
+
+  <ul class="essay-list">
+    {%- for p in ranked -%}
+      {%- include essay-card.html
+        page=p
+        featured=true
+        show_badge=include.show_badge
+        featured_style=include.featured_style
+        show_date=include.show_date
+      -%}
+    {%- endfor -%}
+
+    {%- for p in unranked -%}
+      {%- include essay-card.html
+        page=p
+        featured=true
+        show_badge=include.show_badge
+        featured_style=include.featured_style
+        show_date=include.show_date
+      -%}
+    {%- endfor -%}
+  </ul>
+
+{%- endif -%}
