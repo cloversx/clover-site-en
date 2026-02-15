@@ -6,7 +6,7 @@ Params:
 {%- endcomment -%}
 
 {%- assign all_items = site.pages
-  | where: "layout", "essay"
+  | where: "layout", "content"
   | where_exp: "p", "p.is_archive != true"
 -%}
 
@@ -25,9 +25,9 @@ Params:
     | reverse
   -%}
 
-  <ul class="essay-list">
+  <ul class="content-list">
     {%- for p in ranked -%}
-      {%- include essay-card.html
+      {%- include content-card.html
         page=p
         featured=true
         show_badge=include.show_badge
@@ -37,7 +37,7 @@ Params:
     {%- endfor -%}
 
     {%- for p in unranked -%}
-      {%- include essay-card.html
+      {%- include content-card.html
         page=p
         featured=true
         show_badge=include.show_badge
