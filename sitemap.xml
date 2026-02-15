@@ -51,7 +51,7 @@ permalink: /sitemap.xml
     {%- assign pr = "1.0" -%}
   {%- elsif p.url == "/0/" -%}
     {%- assign pr = "0.9" -%}
-  {%- elsif p.layout == "essay" -%}
+  {%- elsif p.layout == "content" -%}
     {%- if p.is_archive == true -%}
       {%- assign pr = "0.3" -%}
     {%- elsif p.featured == true -%}
