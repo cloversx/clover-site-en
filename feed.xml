@@ -1,0 +1,65 @@
+---
+layout: null
+permalink: /feed.xml
+---
+
+<?xml version="1.0" encoding="UTF-8"?>
+<rss version="2.0">
+<channel>
+  <title>{{ site.title }}</title>
+  <link>{{ site.url }}{{ site.baseurl }}/</link>
+  <description>{{ site.description }}</description>
+  <language>{{ site.lang | default: "en" }}</language>
+
+  {%- assign items = site.pages
+    | where: "layout", "content"
+    | where_exp: "p", "p.is_archive != true"
+  -%}
+
+  {%- for p in items -%}
+    {%- if p.last_updated and p.last_updated != "" -%}
+      {%- assign p.sort_date = p.last_updated -%}
+    {%- elsif p.first_published and p.first_published != "" -%}
+      {%- assign p.sort_date = p.first_published -%}
+    {%- else -%}
+      {%- assign p.sort_date = "2000-01-01" -%}
+    {%- endif -%}
+  {%- endfor -%}
+
+  {%- assign sorted = items | sort: "sort_date" | reverse -%}
+
+  {%- for p in sorted limit:20 -%}
+    <item>
+      <title>{{ p.title | escape }}</title>
+      <link>
+        {%- if p.canonical_url and p.canonical_url != "" -%}
+          {{ p.canonical_url }}
+        {%- else -%}
+          {{ site.url }}{{ site.baseurl }}{{ p.url }}
+        {%- endif -%}
+      </link>
+      <guid>
+        {%- if p.canonical_url and p.canonical_url != "" -%}
+          {{ p.canonical_url }}
+        {%- else -%}
+          {{ site.url }}{{ site.baseurl }}{{ p.url }}
+        {%- endif -%}
+      </guid>
+
+      {%- if p.last_updated and p.last_updated != "" -%}
+        <pubDate>{{ p.last_updated | date_to_rfc822 }}</pubDate>
+      {%- elsif p.first_published and p.first_published != "" -%}
+        <pubDate>{{ p.first_published | date_to_rfc822 }}</pubDate>
+      {%- endif -%}
+
+      {%- if p.summary and p.summary != "" -%}
+        <description>{{ p.summary | xml_escape }}</description>
+      {%- else -%}
+        <description>{{ site.description | xml_escape }}</description>
+      {%- endif -%}
+
+    </item>
+  {%- endfor -%}
+
+</channel>
+</rss>
