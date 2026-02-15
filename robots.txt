@@ -1,4 +1,10 @@
+---
+layout: null
+permalink: /robots.txt
+---
+
 User-agent: *
 Allow: /
 
-Sitemap: https://cloversx.github.io/clover-site-en/sitemap.xml
+Sitemap: {{ "/sitemap.xml" | absolute_url }}
+Feed: {{ "/sitemap.xml" | absolute_url }}
