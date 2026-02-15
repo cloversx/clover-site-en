@@ -1,6 +1,6 @@
 {%- comment -%}
 ==================================================
-essay_meta.html
+content_meta.html
 Slug非依存・完全版
 
 対応：
@@ -28,7 +28,7 @@ Slug非依存・完全版
   {%- assign is_ja = true -%}
 {%- endif -%}
 
-<div class="essay-meta">
+<div class="content-meta">
 
 {%- comment -%}
 ========================================
@@ -49,10 +49,10 @@ Slug非依存・完全版
 
   {%- comment -%}
   page.url 例：
-  /essays/slug/v1/
+  /content/slug/v1/
 
   → split "/v"
-  → /essays/slug/
+  → /content/slug/
   {%- endcomment -%}
 
   {%- assign parts = page.url | split: "/v" -%}
@@ -106,10 +106,10 @@ Slug非依存・完全版
   アーカイブリンク生成（slug非依存）
   ========================================
   現在URL：
-  /essays/slug/
+  /content/slug/
 
-  → /essays/slug/v1/
-  → /essays/slug/v2/
+  → /content/slug/v1/
+  → /content/slug/v2/
   → ...
   ========================================
   {%- endcomment -%}
