@@ -21,6 +21,10 @@ permalink: /sitemap.xml
     {%- continue -%}
   {%- endif -%}
   {%- comment -%}
+  ※ Liquidに endswith が使えるかは環境依存のことがある（GitHub PagesのJekyllだと微妙な場合あり）。
+  安全に行くなら、今の contains ".png" 方式を続けてもOK。
+  {%- endcomment -%}
+  {%- comment -%}
   {%- assign u = p.url | downcase -%}
   {%- if u contains "." -%}
     {%- if u endswith ".xml" or u endswith ".txt" or u endswith ".json" or u endswith ".map"
