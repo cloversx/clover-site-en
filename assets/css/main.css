@@ -53,7 +53,7 @@ body{
   gap:16px;
 }
 
-/* モバイルなどで横幅が極端に狭い場合に、「Essays / About」などのナビ部分をタイトルの下に表示する。 */
+/* モバイルなどで横幅が極端に狭い場合に、「Library / About」などのナビ部分をタイトルの下に表示する。 */
 /*
 @media (max-width: 560px){
   .site-header .container{
@@ -88,7 +88,7 @@ body{
 a{ color:var(--link); }
 a:hover{ text-decoration:underline; }
 
-.page h1, .essay h1{
+.page h1, .content h1{
   font-size: clamp(1.6rem, 2.4vw, 2.15rem);
   line-height: 1.25;
   margin: 22px 0 12px;
@@ -149,7 +149,7 @@ a:hover{ text-decoration:underline; }
   border: 1px solid var(--border);
 }
 
-.essay-meta{
+.content-meta{
   font-size: 0.95rem;
   color: var(--muted);
   padding: 12px 0 10px;
@@ -157,10 +157,10 @@ a:hover{ text-decoration:underline; }
   margin-bottom: 18px;
 }
 
-/* essay_meta の Archives リンクが詰まるのを防ぐ 
+/* content_meta の Archives リンクが詰まるのを防ぐ 
    最初のリンクの左が詰まるしmargin-leftも入れるとリンク間があきすぎてしまうのでテンプレで &nbsp; を入れて対応
 */
-.essay-meta a{
+.content-meta a{
   display: inline-block;
   /* margin-right: 0.5rem; */
 }
@@ -200,19 +200,19 @@ a:hover{ text-decoration:underline; }
   color: var(--muted);
 }
 
-.essay-list{ list-style:none; padding-left:0; margin: 0; }
-.essay-list li{
+.content-list{ list-style:none; padding-left:0; margin: 0; }
+.content-list li{
   border: 1px solid var(--border);
   border-radius: 14px;
   padding: 14px 16px;
   margin: 12px 0;
   background: transparent;
 }
-.essay-list a{
+.content-list a{
   font-weight: 700;
   text-decoration:none;
 }
-.essay-list a:hover{ text-decoration:underline; }
+.content-list a:hover{ text-decoration:underline; }
 .muted{ color: var(--muted); margin-top: 6px; }
 
 .section-divider{
@@ -221,9 +221,9 @@ a:hover{ text-decoration:underline; }
   margin: 22px 0;
 }
 
-.essay-card{ /* 既存があれば上書き不要 */ }
+.content-card{ /* 既存があれば上書き不要 */ }
 
-.essay-card.is-featured{
+.content-card.is-featured{
   background: var(--soft);
   /*
   border-left: 4px solid currentColor;
@@ -231,7 +231,7 @@ a:hover{ text-decoration:underline; }
   */
 }
 /*
-.essay-card.is-featured{
+.content-card.is-featured{
   background: var(--soft);
 }
 */
