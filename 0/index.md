@@ -22,7 +22,7 @@ Liquid の “空白トリムが効きすぎて、見出し ## ... と <ul> が�
 {% comment %}<hr class="section-divider" />{% endcomment %}
 {%- endif -%}
 
-## Latest (All essays)
+## Latest (All contents)
 
 {% comment %}
 include は トリム無し
