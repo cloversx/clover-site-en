@@ -6,7 +6,7 @@ lang: en
 content_id: test1
 is_archive: false
 version: 2
-first_published: 2026-02-09
+first_published: 2026-02-07
 last_updated: 2026-02-09
 
 canonical_url: ""  # 空なら自動生成
