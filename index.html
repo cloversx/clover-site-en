@@ -56,5 +56,5 @@ Liquid の “空白トリムが効きすぎて、見出し ## ... と <ul> が�
 include は トリム無し
 Liquid の “空白トリムが効きすぎて、見出し ## ... と <ul> が同じ行に連結されてしまう
 {% endcomment %}
-{% include content-list-latest.html limit=3 show_date=true %}
+{% comment %}{% include content-list-latest.html limit=3 show_date=true %}{% endcomment %}
 {% include content_section.html mode="latest" limit=3 show_date=true %}
