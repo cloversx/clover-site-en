@@ -2,7 +2,8 @@
 
 <li class="content-card{% if include.featured and include.featured_style %} is-featured{% endif %}">
   <div class="card-top">
-    <a href="{{ site.baseurl }}{{ p.url }}">{{ p.title }}</a>
+    {% comment %}<a href="{{ site.baseurl }}{{ p.url }}">{{ p.title }}</a>{% endcomment %}
+    <a href="{{ p.url | relative_url }}">{{ p.title }}</a>
 
     {%- if include.show_badge -%}
       <span class="badge">Featured</span>
