@@ -1,7 +1,8 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 
-<link rel="alternate" type="application/rss+xml" title="{{ site.title }} RSS" href="{{ site.baseurl }}/feed.xml">
+<link rel="alternate" type="application/rss+xml" title="{{ site.title }} RSS" href="{{ "/feed.xml" | absolute_url }}">
+{%- comment -%}<link rel="alternate" type="application/rss+xml" title="{{ site.title }} RSS" href="{{ site.baseurl }}/feed.xml">{%- endcomment -%}
 
 {%- assign page_title = page.title | default: site.title -%}
 <title>{{ page_title }}{% if page.title %} | {{ site.title }}{% endif %}</title>
