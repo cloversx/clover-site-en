@@ -32,7 +32,7 @@ Welcome.
 ## Featured {% comment %}（代表作）{% endcomment %}
 {% comment %}#### Featured {% comment %}（代表作）{% endcomment %}{% endcomment %}
 
-{% comment %}- (Add links to representative content here){% endcomment %}
+{% comment %}- (Add links to representative contents here){% endcomment %}
 {% comment %}- [AI Isn’t Dangerous. Putting AI Inside an “Evaluation Structure” Is.]({{ site.baseurl }}/0/ai-evaluation-structure/){% endcomment %}
 
 {% comment %}
