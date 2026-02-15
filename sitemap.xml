@@ -1,0 +1,89 @@
+---
+layout: null
+permalink: /sitemap.xml
+---
+
+<?xml version="1.0" encoding="UTF-8"?>
+<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
+
+{%- assign pages = site.pages | where_exp: "p", "p.sitemap != false" -%}
+
+{%- for p in pages -%}
+  {%- comment -%}
+  除外：sitemap自体 / robots / 静的ファイル / feed等
+  {%- endcomment -%}
+  {%- if p.url == "/sitemap.xml" -%}{%- continue -%}{%- endif -%}
+  {%- if p.url == "/robots.txt" -%}{%- continue -%}{%- endif -%}
+  {%- if p.url == "/feed.xml" -%}{%- continue -%}{%- endif -%}
+  {%- if p.url contains ".xml" or p.url contains ".txt" or p.url contains ".json" or p.url contains ".map" 
+        or p.url contains ".css" or p.url contains ".js"
+        or p.url contains ".png" or p.url contains ".jpg" or p.url contains ".jpeg" or p.url contains ".webp" or p.url contains ".svg" or p.url contains ".ico" -%}
+    {%- continue -%}
+  {%- endif -%}
+  {%- comment -%}
+  {%- assign u = p.url | downcase -%}
+  {%- if u contains "." -%}
+    {%- if u endswith ".xml" or u endswith ".txt" or u endswith ".json" or u endswith ".map"
+       or u endswith ".css" or u endswith ".js"
+       or u endswith ".png" or u endswith ".jpg" or u endswith ".jpeg" or u endswith ".webp" or u endswith ".svg" or u endswith ".ico"
+    -%}
+      {%- continue -%}
+    {%- endif -%}
+  {%- endif -%}
+  {%- endcomment -%}
+
+  {%- comment -%}
+  loc：canonical_url があればそれを優先。なければ site.url+baseurl+page.url
+  {%- endcomment -%}
+  {%- assign loc = p.canonical_url -%}
+  {%- if loc == nil or loc == "" -%}
+    {%- assign loc = p.url | absolute_url -%}
+    {%- comment -%}{%- assign loc = site.url | append: site.baseurl | append: p.url -%}{%- endcomment -%}
+  {%- endif -%}
+
+  {%- comment -%}
+  lastmod：last_updated → first_published の順で採用（なければ出さない）
+  {%- endcomment -%}
+  {%- assign lastmod = "" -%}
+  {%- if p.last_updated and p.last_updated != "" -%}
+    {%- assign lastmod = p.last_updated | date_to_xmlschema -%}
+  {%- elsif p.first_published and p.first_published != "" -%}
+    {%- assign lastmod = p.first_published | date_to_xmlschema -%}
+  {%- endif -%}
+
+  {%- comment -%}
+  priority のルール（例）
+  - トップ：1.0
+  - /0/：0.9
+  - Featured（現行）：0.8
+  - 通常（現行）：0.6
+  - About等の固定ページ：0.5
+  - アーカイブ：0.3
+  {%- endcomment -%}
+  {%- assign pr = "0.5" -%}
+
+  {%- if p.url == "/" -%}
+    {%- assign pr = "1.0" -%}
+  {%- elsif p.url == "/0/" -%}
+    {%- assign pr = "0.9" -%}
+  {%- elsif p.layout == "content" -%}
+    {%- if p.is_archive == true -%}
+      {%- assign pr = "0.3" -%}
+    {%- elsif p.featured == true -%}
+      {%- assign pr = "0.8" -%}
+    {%- else -%}
+      {%- assign pr = "0.6" -%}
+    {%- endif -%}
+  {%- elsif p.url == "/about/" -%}
+    {%- assign pr = "0.5" -%}
+  {%- endif -%}
+
+  <url>
+    <loc>{{ loc }}</loc>
+    {%- if lastmod != "" -%}<lastmod>{{ lastmod }}</lastmod>{%- endif -%}
+    <priority>{{ pr }}</priority>
+  </url>
+
+{%- endfor -%}
+
+</urlset>
