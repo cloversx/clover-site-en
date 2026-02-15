@@ -1,0 +1,35 @@
+---
+layout: null
+permalink: /0/contents-all.json
+---
+
+[
+{%- assign items = site.pages
+  | where: "layout", "content"
+  | sort: "last_updated"
+  | reverse
+-%}
+{%- for p in items -%}
+  {%- capture url -%}
+    {%- if p.canonical_url and p.canonical_url != "" -%}
+      {{- p.canonical_url -}}
+    {%- else -%}
+      {{- p.url | absolute_url -}}
+    {%- endif -%}
+  {%- endcapture -%}
+  {
+    "title": {{ p.title | default: "" | jsonify }},
+    "url": {{ url | strip | jsonify }},
+    "summary": {{ p.summary | default: "" | jsonify }},
+    "content_id": {{ p.content_id | default: "" | jsonify }},
+    "lang": {{ p.lang | default: site.lang | default: "" | jsonify }},
+    "tags": {{ p.tags | default: empty | jsonify }},
+    "featured": {{ p.featured | default: false | jsonify }},
+    "featured_rank": {{ p.featured_rank | default: 999999 | jsonify }},
+    "first_published": {{ p.first_published | default: "" | jsonify }},
+    "last_updated": {{ p.last_updated | default: "" | jsonify }},
+    "is_archive": {{ p.is_archive | default: false | jsonify }},
+    "version": {{ p.version | default: 0 | jsonify }}
+  }{%- if forloop.last == false -%},{%- endif -%}
+{%- endfor -%}
+]
