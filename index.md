@@ -3,27 +3,27 @@ layout: page
 title: ""
 ---
 
-# Clover Essays
-{% comment %}### - Clover Essays -{% endcomment %}
+# Clover Library
+{% comment %}### - Clover Library -{% endcomment %}
 
 Welcome.
 
 {% comment %}A quiet canonical archive for long-term preservation.{% endcomment %}
 
 <div class="home-links">
-  <a class="btn" href="{{ site.baseurl }}/essays/">Essays</a> {% comment %}Browse essays{% endcomment %}
+  <a class="btn" href="{{ site.baseurl }}/0/">Library</a> {% comment %}Browse Library{% endcomment %}
   <a class="btn ghost" href="{{ site.baseurl }}/about/">About</a>
 </div>
 
 {% comment %}
-- Read: **[Essays]({{ site.baseurl }}/essays/)**
+- Read: **[Library]({{ site.baseurl }}/0/)**
 - About: **[About]({{ site.baseurl }}/about/)**
 {% endcomment %}
 
 {% comment %}---{% endcomment %}
 
 {%- assign featured_items = site.pages
-  | where: "layout", "essay"
+  | where: "layout", "content"
   | where_exp: "p", "p.is_archive != true"
   | where: "featured", true
 -%}
@@ -32,14 +32,14 @@ Welcome.
 ## Featured {% comment %}（代表作）{% endcomment %}
 {% comment %}#### Featured {% comment %}（代表作）{% endcomment %}{% endcomment %}
 
-{% comment %}- (Add links to representative essays here){% endcomment %}
-{% comment %}- [AI Isn’t Dangerous. Putting AI Inside an “Evaluation Structure” Is.]({{ site.baseurl }}/essays/ai-evaluation-structure/){% endcomment %}
+{% comment %}- (Add links to representative content here){% endcomment %}
+{% comment %}- [AI Isn’t Dangerous. Putting AI Inside an “Evaluation Structure” Is.]({{ site.baseurl }}/0/ai-evaluation-structure/){% endcomment %}
 
 {% comment %}
 include は トリム無し
 Liquid の “空白トリムが効きすぎて、見出し ## ... と <ul> が同じ行に連結されてしまう
 {% endcomment %}
-{% include essay-list-featured.html show_badge=false featured_style=false show_date=false %}
+{% include content-list-featured.html show_badge=false featured_style=false show_date=false %}
 
 {% comment %}<hr class="section-divider" />{% endcomment %}
 {%- endif -%}
@@ -47,11 +47,11 @@ Liquid の “空白トリムが効きすぎて、見出し ## ... と <ul> が�
 ## Latest {% comment %}（最新）{% endcomment %}
 {% comment %}#### Latest {% comment %}（最新）{% endcomment %}{% endcomment %}
 
-{% comment %}- (Add links to latest essays here){% endcomment %}
-{% comment %}- [AI Isn’t Dangerous. Putting AI Inside an “Evaluation Structure” Is.]({{ site.baseurl }}/essays/ai-evaluation-structure/){% endcomment %}
+{% comment %}- (Add links to latest contents here){% endcomment %}
+{% comment %}- [AI Isn’t Dangerous. Putting AI Inside an “Evaluation Structure” Is.]({{ site.baseurl }}/0/ai-evaluation-structure/){% endcomment %}
 
 {% comment %}
 include は トリム無し
 Liquid の “空白トリムが効きすぎて、見出し ## ... と <ul> が同じ行に連結されてしまう
 {% endcomment %}
-{% include essay-list-latest.html limit=3 show_date=true %}
+{% include content-list-latest.html limit=3 show_date=true %}
