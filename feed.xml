@@ -1,0 +1,55 @@
+---
+layout: null
+permalink: /feed.xml
+---
+
+<?xml version="1.0" encoding="UTF-8"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+<channel>
+  <title>{{ site.title | escape }}</title>
+  <link>{{ "/" | absolute_url }}</link>
+  <description>{{ site.description | xml_escape }}</description>
+  <language>{{ site.lang | default: "en" }}</language>
+
+  <atom:link href="{{ "/feed.xml" | absolute_url }}" rel="self" type="application/rss+xml" />
+
+  {%- assign items = site.pages
+    | where: "layout", "content"
+    | where_exp: "p", "p.is_archive != true"
+    | sort: "last_updated"
+    | reverse
+  -%}
+
+  {%- if items and items.size > 0 and items[0].last_updated -%}
+    <lastBuildDate>{{ items[0].last_updated | date_to_rfc822 }}</lastBuildDate>
+  {%- endif -%}
+
+  {%- for p in items limit: 20 -%}
+    {%- capture url -%}
+      {%- if p.canonical_url and p.canonical_url != "" -%}
+        {{- p.canonical_url -}}
+      {%- else -%}
+        {{- p.url | absolute_url -}}
+      {%- endif -%}
+    {%- endcapture -%}
+
+    <item>
+      <title>{{ p.title | escape }}</title>
+      <link>{{ url | strip }}</link>
+      <guid isPermaLink="true">{{ url | strip }}</guid>
+
+      {%- if p.last_updated and p.last_updated != "" -%}
+        <pubDate>{{ p.last_updated | date_to_rfc822 }}</pubDate>
+      {%- elsif p.first_published and p.first_published != "" -%}
+        <pubDate>{{ p.first_published | date_to_rfc822 }}</pubDate>
+      {%- endif -%}
+
+      {%- if p.summary and p.summary != "" -%}
+        <description>{{ p.summary | xml_escape }}</description>
+      {%- else -%}
+        <description>{{ site.description | xml_escape }}</description>
+      {%- endif -%}
+    </item>
+  {%- endfor -%}
+</channel>
+</rss>
