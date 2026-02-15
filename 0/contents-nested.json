@@ -1,0 +1,118 @@
+---
+layout: null
+permalink: /0/contents-nested.json
+---
+
+[
+{%- assign all_items = site.pages
+  | where: "layout", "content"
+-%}
+
+{%- comment -%}
+We will:
+1) Create a unique list of content_ids (fallback to url if missing)
+2) For each content_id:
+   - find current (is_archive != true)
+   - collect archives (is_archive == true), sort by version desc
+3) Output an object per content_id, even if current is missing (archives-only)
+{%- endcomment -%}
+
+{%- assign all_ids = "" | split: "" -%}
+{%- for p in all_items -%}
+  {%- assign cid = p.content_id -%}
+  {%- if cid == nil or cid == "" -%}
+    {%- assign cid = p.url -%}
+  {%- endif -%}
+  {%- assign all_ids = all_ids | push: cid -%}
+{%- endfor -%}
+{%- assign ids = all_ids | uniq | sort -%}
+
+{%- for cid in ids -%}
+
+  {%- comment -%}Find current page for this content_id{%- endcomment -%}
+  {%- assign current = nil -%}
+  {%- for p in all_items -%}
+    {%- if p.is_archive != true -%}
+      {%- assign pcid = p.content_id -%}
+      {%- if pcid == nil or pcid == "" -%}{%- assign pcid = p.url -%}{%- endif -%}
+      {%- if pcid == cid -%}
+        {%- assign current = p -%}
+        {%- break -%}
+      {%- endif -%}
+    {%- endif -%}
+  {%- endfor -%}
+
+  {%- comment -%}Collect archives for this content_id{%- endcomment -%}
+  {%- assign archives = "" | split: "" -%}
+  {%- for p in all_items -%}
+    {%- if p.is_archive == true -%}
+      {%- assign pcid = p.content_id -%}
+      {%- if pcid == nil or pcid == "" -%}{%- assign pcid = p.url -%}{%- endif -%}
+      {%- if pcid == cid -%}
+        {%- assign archives = archives | push: p -%}
+      {%- endif -%}
+    {%- endif -%}
+  {%- endfor -%}
+  {%- assign archives = archives | sort: "version" | reverse -%}
+
+  {%- comment -%}
+Only emit entries that have at least one of (current, archives).
+In practice ids came from all_items so this will always be true,
+but keep it safe.
+{%- endcomment -%}
+  {%- if current == nil and (archives == nil or archives.size == 0) -%}
+    {%- continue -%}
+  {%- endif -%}
+
+  {
+    "content_id": {{ cid | jsonify }},
+    "current": {%- if current -%}
+      {%- capture cur_url -%}
+        {%- if current.canonical_url and current.canonical_url != "" -%}
+          {{- current.canonical_url -}}
+        {%- else -%}
+          {{- current.url | absolute_url -}}
+        {%- endif -%}
+      {%- endcapture -%}
+      {
+        "title": {{ current.title | default: "" | jsonify }},
+        "url": {{ cur_url | strip | jsonify }},
+        "summary": {{ current.summary | default: "" | jsonify }},
+        "lang": {{ current.lang | default: site.lang | default: "" | jsonify }},
+        "tags": {{ current.tags | default: empty | jsonify }},
+        "featured": {{ current.featured | default: false | jsonify }},
+        "featured_rank": {{ current.featured_rank | default: 999999 | jsonify }},
+        "first_published": {{ current.first_published | default: "" | jsonify }},
+        "last_updated": {{ current.last_updated | default: "" | jsonify }},
+        "version": {{ current.version | default: 0 | jsonify }},
+        "is_archive": false
+      }
+    {%- else -%}
+      null
+    {%- endif -%},
+    "archives": [
+      {%- for a in archives -%}
+        {%- capture a_url -%}
+          {%- if a.canonical_url and a.canonical_url != "" -%}
+            {{- a.canonical_url -}}
+          {%- else -%}
+            {{- a.url | absolute_url -}}
+          {%- endif -%}
+        {%- endcapture -%}
+        {
+          "title": {{ a.title | default: "" | jsonify }},
+          "url": {{ a_url | strip | jsonify }},
+          "summary": {{ a.summary | default: "" | jsonify }},
+          "lang": {{ a.lang | default: site.lang | default: "" | jsonify }},
+          "tags": {{ a.tags | default: empty | jsonify }},
+          "first_published": {{ a.first_published | default: "" | jsonify }},
+          "last_updated": {{ a.last_updated | default: "" | jsonify }},
+          "version": {{ a.version | default: 0 | jsonify }},
+          "is_archive": true
+        }{%- if forloop.last == false -%},{%- endif -%}
+      {%- endfor -%}
+    ]
+  }{%- if forloop.last == false -%},{%- endif -%}
+
+{%- endfor -%}
+]
