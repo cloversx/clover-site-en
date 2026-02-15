@@ -39,7 +39,7 @@ permalink: /sitemap.xml
   {%- comment -%}
   priority のルール（例）
   - トップ：1.0
-  - /essays/：0.9
+  - /0/：0.9
   - Featured（現行）：0.8
   - 通常（現行）：0.6
   - About等の固定ページ：0.5
@@ -49,7 +49,7 @@ permalink: /sitemap.xml
 
   {%- if p.url == "/" -%}
     {%- assign pr = "1.0" -%}
-  {%- elsif p.url == "/essays/" -%}
+  {%- elsif p.url == "/0/" -%}
     {%- assign pr = "0.9" -%}
   {%- elsif p.layout == "essay" -%}
     {%- if p.is_archive == true -%}
