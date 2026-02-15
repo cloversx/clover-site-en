@@ -1,36 +1,36 @@
-{%- comment -%}
+{% comment %}
 _includes/content_section.html
 
 Params:
-- mode: "featured" | "latest" (required)
-- limit: number (optional)  ※主に latest 用
+- mode: "featured" | "latest"
+- limit: number (optional)
 - show_badge: true/false
 - featured_style: true/false
 - show_date: true/false
-{%- endcomment -%}
+{% endcomment %}
 
-{%- assign mode = include.mode | default: "latest" -%}
+{% assign mode = include.mode | default: "latest" %}
 
-{%- assign all_items = site.pages
+{% assign all_items = site.pages
   | where: "layout", "content"
   | where_exp: "p", "p.is_archive != true"
--%}
+%}
 
-{%- if mode == "featured" -%}
+{% if mode == "featured" %}
 
-  {%- assign items = all_items | where: "featured", true -%}
-  {%- if items and items.size > 0 -%}
+  {% assign items = all_items | where: "featured", true %}
+  {% if items and items.size > 0 %}
 
-    {%- assign ranked = items
+    {% assign ranked = items
       | where_exp: "p", "p.featured_rank != nil"
       | sort: "featured_rank"
-    -%}
+    %}
 
-    {%- assign unranked = items
+    {% assign unranked = items
       | where_exp: "p", "p.featured_rank == nil"
       | sort: "last_updated"
       | reverse
-    -%}
+    %}
 
     <ul class="content-list">
       {%- for p in ranked -%}
@@ -54,23 +54,22 @@ Params:
       {%- endfor -%}
     </ul>
 
-  {%- endif -%}
+  {% endif %}
 
-{%- else -%}
-  {%- comment -%} latest {%- endcomment -%}
+{% else %}
 
-  {%- assign items = all_items | sort: "last_updated" | reverse -%}
+  {% assign items = all_items | sort: "last_updated" | reverse %}
 
   <ul class="content-list">
-    {%- if include.limit and include.limit != "" -%}
+    {% if include.limit and include.limit != "" %}
       {%- for p in items limit: include.limit -%}
         {%- include content-card.html page=p show_date=include.show_date -%}
       {%- endfor -%}
-    {%- else -%}
+    {% else %}
       {%- for p in items -%}
         {%- include content-card.html page=p show_date=include.show_date -%}
       {%- endfor -%}
-    {%- endif -%}
+    {% endif %}
   </ul>
 
-{%- endif -%}
+{% endif %}
