@@ -5,20 +5,20 @@ Params:
 {%- endcomment -%}
 
 {%- assign items = site.pages
-  | where: "layout", "essay"
+  | where: "layout", "content"
   | where_exp: "p", "p.is_archive != true"
   | sort: "last_updated"
   | reverse
 -%}
 
-<ul class="essay-list">
+<ul class="content-list">
   {%- if include.limit and include.limit != "" -%}
     {%- for p in items limit: include.limit -%}
-      {%- include essay-card.html page=p show_date=include.show_date -%}
+      {%- include content-card.html page=p show_date=include.show_date -%}
     {%- endfor -%}
   {%- else -%}
     {%- for p in items -%}
-      {%- include essay-card.html page=p show_date=include.show_date -%}
+      {%- include content-card.html page=p show_date=include.show_date -%}
     {%- endfor -%}
   {%- endif -%}
 </ul>
