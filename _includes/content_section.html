@@ -18,58 +18,58 @@ Params:
 
 {% if mode == "featured" %}
 
-  {% assign items = all_items | where: "featured", true %}
-  {% if items and items.size > 0 %}
+{% assign items = all_items | where: "featured", true %}
+{% if items and items.size > 0 %}
 
-    {% assign ranked = items
-      | where_exp: "p", "p.featured_rank != nil"
-      | sort: "featured_rank"
-    %}
+{% assign ranked = items
+  | where_exp: "p", "p.featured_rank != nil"
+  | sort: "featured_rank"
+%}
 
-    {% assign unranked = items
-      | where_exp: "p", "p.featured_rank == nil"
-      | sort: "last_updated"
-      | reverse
-    %}
+{% assign unranked = items
+  | where_exp: "p", "p.featured_rank == nil"
+  | sort: "last_updated"
+  | reverse
+%}
 
-    <ul class="content-list">
-      {%- for p in ranked -%}
-        {%- include content-card.html
-          page=p
-          featured=true
-          show_badge=include.show_badge
-          featured_style=include.featured_style
-          show_date=include.show_date
-        -%}
-      {%- endfor -%}
+<ul class="content-list">
+{% for p in ranked %}
+  {% include content-card.html
+    page=p
+    featured=true
+    show_badge=include.show_badge
+    featured_style=include.featured_style
+    show_date=include.show_date
+  %}
+{% endfor %}
 
-      {%- for p in unranked -%}
-        {%- include content-card.html
-          page=p
-          featured=true
-          show_badge=include.show_badge
-          featured_style=include.featured_style
-          show_date=include.show_date
-        -%}
-      {%- endfor -%}
-    </ul>
+{% for p in unranked %}
+  {% include content-card.html
+    page=p
+    featured=true
+    show_badge=include.show_badge
+    featured_style=include.featured_style
+    show_date=include.show_date
+  %}
+{% endfor %}
+</ul>
 
-  {% endif %}
+{% endif %}
 
 {% else %}
 
-  {% assign items = all_items | sort: "last_updated" | reverse %}
+{% assign items = all_items | sort: "last_updated" | reverse %}
 
-  <ul class="content-list">
-    {% if include.limit and include.limit != "" %}
-      {%- for p in items limit: include.limit -%}
-        {%- include content-card.html page=p show_date=include.show_date -%}
-      {%- endfor -%}
-    {% else %}
-      {%- for p in items -%}
-        {%- include content-card.html page=p show_date=include.show_date -%}
-      {%- endfor -%}
-    {% endif %}
-  </ul>
+<ul class="content-list">
+{% if include.limit and include.limit != "" %}
+{% for p in items limit: include.limit %}
+  {% include content-card.html page=p show_date=include.show_date %}
+{% endfor %}
+{% else %}
+{% for p in items %}
+  {% include content-card.html page=p show_date=include.show_date %}
+{% endfor %}
+{% endif %}
+</ul>
 
 {% endif %}
