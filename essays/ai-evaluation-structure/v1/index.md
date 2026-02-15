@@ -1,9 +1,9 @@
 ---
-layout: essay
+layout: content
 title: "AI Isn’t Dangerous. Putting AI Inside an “Evaluation Structure” Is."
 summary: "Archived snapshot (v1)."
 lang: en
-slug: ai-evaluation-structure
+content_id: ai-evaluation-structure
 is_archive: true
 version: 1
 first_published: 2026-02-06
