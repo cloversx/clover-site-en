@@ -1,11 +1,11 @@
 ---
 layout: page
-title: Essays
-permalink: /essays/
+title: Library
+permalink: /0/
 ---
 
 {%- assign featured_items = site.pages
-  | where: "layout", "essay"
+  | where: "layout", "content"
   | where_exp: "p", "p.is_archive != true"
   | where: "featured", true
 -%}
@@ -17,7 +17,7 @@ permalink: /essays/
 include は トリム無し
 Liquid の “空白トリムが効きすぎて、見出し ## ... と <ul> が同じ行に連結されてしまう
 {% endcomment %}
-{% include essay-list-featured.html show_badge=true featured_style=true show_date=false %}
+{% include content-list-featured.html show_badge=true featured_style=true show_date=false %}
 
 {% comment %}<hr class="section-divider" />{% endcomment %}
 {%- endif -%}
@@ -28,4 +28,4 @@ Liquid の “空白トリムが効きすぎて、見出し ## ... と <ul> が�
 include は トリム無し
 Liquid の “空白トリムが効きすぎて、見出し ## ... と <ul> が同じ行に連結されてしまう
 {% endcomment %}
-{% include essay-list-latest.html show_date=true %}
+{% include content-list-latest.html show_date=true %}
