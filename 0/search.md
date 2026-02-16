@@ -63,7 +63,7 @@ pinned_tags:
   const I18N = {
     en: {
       placeholder: 'Search titles, summaries, or tags… (tip: tag:ai-safety, content_id:ai-evaluation-structure, or "exact phrase")',{% comment %}'Search title / summary / tags… (tip: tag:ai-safety, content_id:ai-evaluation-structure, or "exact phrase")',{% endcomment %}
-      onlyCurrent: "Current only",{% comment %}"Only current",{% endcomment %}
+      onlyCurrent: "Latest only",{% comment %}"Current only",{% endcomment %}{% comment %}"Only current",{% endcomment %}
       includeArchives: "Include archived versions",{% comment %}"Include archives",{% endcomment %}
       sortLabel: "Sort:",
       tagsTitle: "Tags",
@@ -94,7 +94,7 @@ pinned_tags:
     },
     ja: {
       placeholder: 'タイトル・要約・タグを検索...（例：tag:AI安全性, content_id:ai-evaluation-structure, または "完全一致フレーズ"）',{% comment %}'検索（タイトル / 要約 / タグ）…（例: tag:AI安全性, content_id:ai-evaluation-structure, または "完全一致フレーズ"）',{% endcomment %}
-      onlyCurrent: "現在のコンテンツのみ",{% comment %}"現行のみ",{% endcomment %}
+      onlyCurrent: "最新版のみ",{% comment %}"現在のコンテンツのみ",{% endcomment %}{% comment %}"現行のみ",{% endcomment %}
       includeArchives: "アーカイブ版を含める",{% comment %}"アーカイブを含める",{% endcomment %}
       sortLabel: "並び替え:",
       tagsTitle: "タグ",
