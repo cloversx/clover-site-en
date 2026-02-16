@@ -14,11 +14,11 @@ title: ""
 
 <div class="home-links">
   {% if lang == "ja" %}
-    <a class="btn" href="{{ site.baseurl }}/0/">図書</a>
-    <a class="btn ghost" href="{{ site.baseurl }}/about/">概要</a>
+    <a class="btn" href="{{ site.baseurl }}/0/">ライブラリ</a>{% comment %}図書{% endcomment %}
+    {% comment %}<a class="btn ghost" href="{{ site.baseurl }}/about/">このサイトについて</a>{% endcomment %}{% comment %}図書{% endcomment %}
   {% else %}
-    <a class="btn" href="{{ site.baseurl }}/0/">Library</a> {% comment %}Browse Library{% endcomment %}
-    <a class="btn ghost" href="{{ site.baseurl }}/about/">About</a>
+    <a class="btn" href="{{ site.baseurl }}/0/">Library</a>{% comment %}Browse Library{% endcomment %}
+    {% comment %}<a class="btn ghost" href="{{ site.baseurl }}/about/">About</a>{% endcomment %}
   {% endif %}
 </div>
 
@@ -38,7 +38,7 @@ title: ""
 
 {%- if featured_items and featured_items.size > 0 -%}
 {% if lang == "ja" %}
-## 注目
+## 固定
 {% else %}
 ## Pinned
 {% comment %}## Featured {% endcomment %}{% comment %}（代表作）{% endcomment %}
