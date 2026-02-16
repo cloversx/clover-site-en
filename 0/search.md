@@ -63,19 +63,19 @@ pinned_tags:
   const I18N = {
     en: {
       placeholder: 'Search titles, summaries, tags, "exact phrase" or id',
-                   {% comment %}'Search titles, summaries, or tags… (tip: tag:ai-safety, content_id:ai-evaluation-structure, or "exact phrase")',{% endcomment %}
-                   {% comment %}'Search title / summary / tags… (tip: tag:ai-safety, content_id:ai-evaluation-structure, or "exact phrase")',{% endcomment %}
+                   // {% comment %}'Search titles, summaries, or tags… (tip: tag:ai-safety, content_id:ai-evaluation-structure, or "exact phrase")',{% endcomment %}
+                   // {% comment %}'Search title / summary / tags… (tip: tag:ai-safety, content_id:ai-evaluation-structure, or "exact phrase")',{% endcomment %}
       onlyCurrent: "Latest only",
-                   {% comment %}"Current only",{% endcomment %}
-                   {% comment %}"Only current",{% endcomment %}
+                   // {% comment %}"Current only",{% endcomment %}
+                   // {% comment %}"Only current",{% endcomment %}
       includeArchives: "Include archived versions",
-                       {% comment %}"Include archives",{% endcomment %}
+                       // {% comment %}"Include archives",{% endcomment %}
       sortLabel: "Sort:",
       tagsTitle: "Tags",
       noTags: "No tags.",
       statusType:  'Start typing to search. Use filters like tags, phrases in quotes, or id.',
-                   {% comment %}'Start typing to search. Use filters like tag:..., content_id:..., or phrases in quotes.',{% endcomment %}
-                   {% comment %}'Type to search. (Filters: tag:..., content_id:..., and phrases "...")',{% endcomment %}
+                   // {% comment %}'Start typing to search. Use filters like tag:..., content_id:..., or phrases in quotes.',{% endcomment %}
+                   // {% comment %}'Type to search. (Filters: tag:..., content_id:..., and phrases "...")',{% endcomment %}
       statusLoading: "Loading index…",
       statusReady: "Ready.",
       statusFailed: "Failed to load search index.",
@@ -84,14 +84,14 @@ pinned_tags:
       noteTags: (s) => `Tags: ${s}`,
       noteContentId: (s) => `content_id: ${s}`,
       noteOnlyCurrent: "Latest only",
-                       {% comment %}"Only current",{% endcomment %}
+                       // {% comment %}"Only current",{% endcomment %}
       noteIncludingArchives: "Including archived versions",
-                             {% comment %}"Including archives",{% endcomment %}
+                             // {% comment %}"Including archives",{% endcomment %}
       noteSort: (s) => `Sort: ${s}`,
       badgeCurrent: "Latest",
-                    {% comment %}"Current",{% endcomment %}
+                    // {% comment %}"Current",{% endcomment %}
       badgeArchive: (v) => `Archived v${v}`,
-                           {% comment %}`Archive v${v}`,{% endcomment %}
+                           // {% comment %}`Archive v${v}`,{% endcomment %}
       published: "Published",
       updated: "Updated",
 
@@ -105,19 +105,19 @@ pinned_tags:
     },
     ja: {
       placeholder: 'タイトル・要約・タグ・"フレーズ（完全一致）"・IDを検索',
-                   {% comment %}'タイトル・要約・タグを検索...（例：tag:AI安全性, content_id:ai-evaluation-structure, または "完全一致フレーズ"）',{% endcomment %}
-                   {% comment %}'検索（タイトル / 要約 / タグ）…（例: tag:AI安全性, content_id:ai-evaluation-structure, または "完全一致フレーズ"）',{% endcomment %}
+                   // {% comment %}'タイトル・要約・タグを検索...（例：tag:AI安全性, content_id:ai-evaluation-structure, または "完全一致フレーズ"）',{% endcomment %}
+                   // {% comment %}'検索（タイトル / 要約 / タグ）…（例: tag:AI安全性, content_id:ai-evaluation-structure, または "完全一致フレーズ"）',{% endcomment %}
       onlyCurrent: "最新版のみ",
-                   {% comment %}"現在のコンテンツのみ",{% endcomment %}
-                   {% comment %}"現行のみ",{% endcomment %}
+                   // {% comment %}"現在のコンテンツのみ",{% endcomment %}
+                   // {% comment %}"現行のみ",{% endcomment %}
       includeArchives: "アーカイブ版を含める",
-                      {% comment %}"アーカイブを含める",{% endcomment %}
+                      // {% comment %}"アーカイブを含める",{% endcomment %}
       sortLabel: "並び替え:",
       tagsTitle: "タグ",
       noTags: "タグがまだありません。",
       statusType: '入力すると検索できます。タグ・"..." で囲んだ語句・IDによる絞り込みが可能です。',
-                  {% comment %}'入力すると検索できます。tag:... や content_id:...、または "..." で囲んだ語句による絞り込みが可能です。',{% endcomment %}
-                  {% comment %}'検索してください。（フィルタ: tag:..., content_id:..., フレーズ "...")',{% endcomment %}
+                  // {% comment %}'入力すると検索できます。tag:... や content_id:...、または "..." で囲んだ語句による絞り込みが可能です。',{% endcomment %}
+                  // {% comment %}'検索してください。（フィルタ: tag:..., content_id:..., フレーズ "...")',{% endcomment %}
       statusLoading: "インデックス読み込み中…",
       statusReady: "準備完了。",
       statusFailed: "検索インデックスの読み込みに失敗しました。",
@@ -126,18 +126,18 @@ pinned_tags:
       noteTags: (s) => `タグ: ${s}`,
       noteContentId: (s) => `content_id: ${s}`,
       noteOnlyCurrent: "最新版のみ",
-                       {% comment %}"現行のみ",{% endcomment %}
+                       // {% comment %}"現行のみ",{% endcomment %}
       noteIncludingArchives: "アーカイブ版を含む",
-                             {% comment %}"アーカイブを含む",{% endcomment %}
+                             // {% comment %}"アーカイブを含む",{% endcomment %}
       noteSort: (s) => `並び替え: ${s}`,
       badgeCurrent: "最新版",
-                    {% comment %}"現行",{% endcomment %}
+                    // {% comment %}"現行",{% endcomment %}
       badgeArchive: (v) => `アーカイブ版 v${v}`,
-                    {% comment %}`アーカイブ v${v}`,{% endcomment %}
+                    // {% comment %}`アーカイブ v${v}`,{% endcomment %}
       published: "公開日",
-                   {% comment %}"初公開",{% endcomment %}
+                   // {% comment %}"初公開",{% endcomment %}
       updated: "更新日",
-                   {% comment %}"最終更新",{% endcomment %}
+                   // {% comment %}"最終更新",{% endcomment %}
 
       sort_relevance: "関連度",
       sort_updated_desc: "更新日（新しい順）",
