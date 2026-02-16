@@ -8,9 +8,12 @@ title_i18n:
   ja: アーカイブ
 ---
 
-This page lists archived versions of all contents, grouped by content.
+This page lists archived versions of all content, grouped by entry.
+{% comment %}This page lists archived versions of all contents, grouped by content.{% endcomment %}
 
-Archived versions represent fixed snapshots of earlier intellectual stages.
+Archived versions preserve fixed snapshots of earlier states.
+{% comment %}Archived versions are fixed snapshots of earlier versions.{% endcomment %}
+{% comment %}Archived versions represent fixed snapshots of earlier intellectual stages.{% endcomment %}
 
 ---
 
