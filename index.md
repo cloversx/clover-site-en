@@ -3,6 +3,8 @@ layout: page
 title: ""
 ---
 
+{%- assign lang = page.lang | default: site.lang | default: "en" -%}
+
 # Clover Library
 {% comment %}### - Clover Library -{% endcomment %}
 
