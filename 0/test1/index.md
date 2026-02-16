@@ -5,7 +5,7 @@ summary: "test1"
 lang: en
 content_id: test1
 is_archive: false
-version: 2
+version: 3
 first_published: 2026-02-07
 last_updated: 2026-02-09
 
