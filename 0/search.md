@@ -104,7 +104,7 @@ pinned_tags:
       sort_title_desc: "Title (Z→A)",
     },
     ja: {
-      placeholder: 'タイトル・要約・タグ・"フレーズ（完全一致）"・ID・を検索',
+      placeholder: 'タイトル・要約・タグ・"フレーズ（完全一致）"・IDを検索',
                    {% comment %}'タイトル・要約・タグを検索...（例：tag:AI安全性, content_id:ai-evaluation-structure, または "完全一致フレーズ"）',{% endcomment %}
                    {% comment %}'検索（タイトル / 要約 / タグ）…（例: tag:AI安全性, content_id:ai-evaluation-structure, または "完全一致フレーズ"）',{% endcomment %}
       onlyCurrent: "最新版のみ",
