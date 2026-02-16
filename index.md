@@ -22,7 +22,7 @@ title_i18n:
 <div class="home-links">
   {% if lang == "ja" %}
     <a class="btn" href="{{ site.baseurl }}/0/">ライブラリ</a>{% comment %}図書{% endcomment %}
-    {% comment %}<a class="btn ghost" href="{{ site.baseurl }}/about/">このサイトについて</a>{% endcomment %}{% comment %}図書{% endcomment %}
+    {% comment %}<a class="btn ghost" href="{{ site.baseurl }}/about/">このサイトについて</a>{% endcomment %}{% comment %}概要{% endcomment %}
   {% else %}
     <a class="btn" href="{{ site.baseurl }}/0/">Library</a>{% comment %}Browse Library{% endcomment %}
     {% comment %}<a class="btn ghost" href="{{ site.baseurl }}/about/">About</a>{% endcomment %}
