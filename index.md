@@ -60,7 +60,7 @@ Liquid の “空白トリムが効きすぎて、見出し ## ... と <ul> が�
 {%- endif -%}
 
 {% if lang == "ja" %}
-## 最新 <span style="color:red">３件</span>
+## 最新 {% comment %}<span style="color:red">３件</span>{% endcomment %}
 {% else %}
 ## Latest {% comment %}（最新）{% endcomment %}
 {% endif %}
