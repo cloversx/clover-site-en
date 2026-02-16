@@ -93,13 +93,14 @@ pinned_tags:
       sort_title_desc: "Title (Z→A)",
     },
     ja: {
-      placeholder: '検索（タイトル / 要約 / タグ）…（例: tag:AI安全性, content_id:ai-evaluation-structure, または "完全一致フレーズ"）',
-      onlyCurrent: "現行のみ",
-      includeArchives: "アーカイブを含める",
+      placeholder: 'タイトル・要約・タグを検索...（例：tag:AI安全性, content_id:ai-evaluation-structure, または "完全一致フレーズ"）',{% comment %}'検索（タイトル / 要約 / タグ）…（例: tag:AI安全性, content_id:ai-evaluation-structure, または "完全一致フレーズ"）',{% endcomment %}
+      onlyCurrent: "現在のコンテンツのみ",{% comment %}"現行のみ",{% endcomment %}
+      includeArchives: "アーカイブ版を含める",{% comment %}"アーカイブを含める",{% endcomment %}
       sortLabel: "並び替え:",
       tagsTitle: "タグ",
       noTags: "タグがまだありません。",
-      statusType: '検索してください。（フィルタ: tag:..., content_id:..., フレーズ "...")',
+      statusType: '入力すると検索できます。tag:... や content_id:...、または "..." で囲んだ語句による絞り込みが可能です。',{% comment %}
+'検索してください。（フィルタ: tag:..., content_id:..., フレーズ "...")',{% endcomment %}
       statusLoading: "インデックス読み込み中…",
       statusReady: "準備完了。",
       statusFailed: "検索インデックスの読み込みに失敗しました。",
