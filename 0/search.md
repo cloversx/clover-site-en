@@ -114,13 +114,19 @@ pinned_tags:
       statusResults: (n) => `${n} 件`,
       noteTags: (s) => `タグ: ${s}`,
       noteContentId: (s) => `content_id: ${s}`,
-      noteOnlyCurrent: "現行のみ",
-      noteIncludingArchives: "アーカイブを含む",
+      noteOnlyCurrent: "最新版のみ",
+                       {% comment %}"現行のみ",{% endcomment %}
+      noteIncludingArchives: "アーカイブ版を含む",
+                             {% comment %}"アーカイブを含む",{% endcomment %}
       noteSort: (s) => `並び替え: ${s}`,
-      badgeCurrent: "現行",
-      badgeArchive: (v) => `アーカイブ v${v}`,
-      published: "初公開",
-      updated: "最終更新",
+      badgeCurrent: "最新版",
+                    {% comment %}"現行",{% endcomment %}
+      badgeArchive: (v) => `アーカイブ版 v${v}`,
+                    {% comment %}`アーカイブ v${v}`,{% endcomment %}
+      published: "公開日",
+                   {% comment %}"初公開",{% endcomment %}
+      updated: "更新日",
+                   {% comment %}"最終更新",{% endcomment %}
 
       sort_relevance: "関連度",
       sort_updated_desc: "更新日（新しい順）",
