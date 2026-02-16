@@ -8,7 +8,7 @@ title: ""
 # Clover Library
 {% comment %}### - Clover Library -{% endcomment %}
 
-Welcome.
+{% comment %}Welcome.{% endcomment %}
 
 {% comment %}A quiet canonical archive for long-term preservation.{% endcomment %}
 
