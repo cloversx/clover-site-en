@@ -8,12 +8,20 @@ title_i18n:
   ja: アーカイブ
 ---
 
+{% if site.lang == "ja" %}
+このページでは、すべてのコンテンツのアーカイブ版を、エントリごとに一覧表示しています。
+{% else %}
 This page lists archived versions of all content, grouped by entry.
 {% comment %}This page lists archived versions of all contents, grouped by content.{% endcomment %}
+{% endif %}
 
+{% if site.lang == "ja" %}
+アーカイブ版は、過去の状態を固定されたスナップショットとして保存したものです。
+{% else %}
 Archived versions preserve fixed snapshots of earlier states.
 {% comment %}Archived versions are fixed snapshots of earlier versions.{% endcomment %}
 {% comment %}Archived versions represent fixed snapshots of earlier intellectual stages.{% endcomment %}
+{% endif %}
 
 ---
 
