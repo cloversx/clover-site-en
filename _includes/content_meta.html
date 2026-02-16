@@ -7,9 +7,18 @@ content_meta.html (vNext)
 - archive links only for existing pages
 {%- endcomment -%}
 
-{%- assign is_archive = page.is_archive == true -%}
-{%- assign lang = page.lang | default: site.lang | default: "en" -%}
-{%- assign is_ja = lang == "ja" -%}
+{%- assign lang = page.lang | default: site.lang | default: "en" | downcase -%}
+
+{%- assign is_ja = false -%}
+{%- if lang == "ja" -%}
+  {%- assign is_ja = true -%}
+{%- endif -%}
+
+{%- assign is_archive = false -%}
+{%- if page.is_archive == true or page.is_archive == "true" -%}
+  {%- assign is_archive = true -%}
+{%- endif -%}
+
 {%- assign cid = page.content_id -%}
 
 <div class="content-meta">
