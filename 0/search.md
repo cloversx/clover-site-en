@@ -62,13 +62,13 @@ pinned_tags:
 
   const I18N = {
     en: {
-      placeholder: 'Search title / summary / tags… (tip: tag:ai-safety, content_id:ai-evaluation-structure, or "exact phrase")',
-      onlyCurrent: "Only current",
-      includeArchives: "Include archives",
+      placeholder: 'Search titles, summaries, or tags… (tip: tag:ai-safety, content_id:ai-evaluation-structure, or "exact phrase")',{% comment %}'Search title / summary / tags… (tip: tag:ai-safety, content_id:ai-evaluation-structure, or "exact phrase")',{% endcomment %}
+      onlyCurrent: "Current only",{% comment %}"Only current",{% endcomment %}
+      includeArchives: "Include archived versions",{% comment %}"Include archives",{% endcomment %}
       sortLabel: "Sort:",
       tagsTitle: "Tags",
       noTags: "No tags.",
-      statusType: 'Type to search. (Filters: tag:..., content_id:..., and phrases "...")',
+      statusType: 'Start typing to search. Use filters like tag:..., content_id:..., or phrases in quotes.)',{% comment %}'Type to search. (Filters: tag:..., content_id:..., and phrases "...")',{% endcomment %}
       statusLoading: "Loading index…",
       statusReady: "Ready.",
       statusFailed: "Failed to load search index.",
