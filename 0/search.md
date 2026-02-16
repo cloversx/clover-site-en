@@ -62,13 +62,20 @@ pinned_tags:
 
   const I18N = {
     en: {
-      placeholder: 'Search titles, summaries, or tags… (tip: tag:ai-safety, content_id:ai-evaluation-structure, or "exact phrase")',{% comment %}'Search title / summary / tags… (tip: tag:ai-safety, content_id:ai-evaluation-structure, or "exact phrase")',{% endcomment %}
-      onlyCurrent: "Latest only",{% comment %}"Current only",{% endcomment %}{% comment %}"Only current",{% endcomment %}
-      includeArchives: "Include archived versions",{% comment %}"Include archives",{% endcomment %}
+      placeholder: 'Search titles, summaries, tags, "exact phrase" or id',
+                   {% comment %}'Search titles, summaries, or tags… (tip: tag:ai-safety, content_id:ai-evaluation-structure, or "exact phrase")',{% endcomment %}
+                   {% comment %}'Search title / summary / tags… (tip: tag:ai-safety, content_id:ai-evaluation-structure, or "exact phrase")',{% endcomment %}
+      onlyCurrent: "Latest only",
+                   {% comment %}"Current only",{% endcomment %}
+                   {% comment %}"Only current",{% endcomment %}
+      includeArchives: "Include archived versions",
+                       {% comment %}"Include archives",{% endcomment %}
       sortLabel: "Sort:",
       tagsTitle: "Tags",
       noTags: "No tags.",
-      statusType: 'Start typing to search. Use filters like tag:..., content_id:..., or phrases in quotes.)',{% comment %}'Type to search. (Filters: tag:..., content_id:..., and phrases "...")',{% endcomment %}
+      statusType:  'Start typing to search. Use filters like tags, phrases in quotes, or id.',
+                   {% comment %}'Start typing to search. Use filters like tag:..., content_id:..., or phrases in quotes.',{% endcomment %}
+                   {% comment %}'Type to search. (Filters: tag:..., content_id:..., and phrases "...")',{% endcomment %}
       statusLoading: "Loading index…",
       statusReady: "Ready.",
       statusFailed: "Failed to load search index.",
@@ -76,11 +83,15 @@ pinned_tags:
       statusResults: (n) => `${n} result(s).`,
       noteTags: (s) => `Tags: ${s}`,
       noteContentId: (s) => `content_id: ${s}`,
-      noteOnlyCurrent: "Only current",
-      noteIncludingArchives: "Including archives",
+      noteOnlyCurrent: "Latest only",
+                       {% comment %}"Only current",{% endcomment %}
+      noteIncludingArchives: "Including archived versions",
+                             {% comment %}"Including archives",{% endcomment %}
       noteSort: (s) => `Sort: ${s}`,
-      badgeCurrent: "Current",
-      badgeArchive: (v) => `Archive v${v}`,
+      badgeCurrent: "Latest",
+                    {% comment %}"Current",{% endcomment %}
+      badgeArchive: (v) => `Archived v${v}`,
+                           {% comment %}`Archive v${v}`,{% endcomment %}
       published: "Published",
       updated: "Updated",
 
