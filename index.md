@@ -12,16 +12,16 @@ Welcome.
 
 {% comment %}A quiet canonical archive for long-term preservation.{% endcomment %}
 
-{% if lang == "ja" %}
-  <div class="home-links">
+<div class="home-links">
+  {% if lang == "ja" %}
     <a class="btn" href="{{ site.baseurl }}/0/">図書</a>
     <a class="btn ghost" href="{{ site.baseurl }}/about/">概要</a>
-{% else %}
-  <div class="home-links">
+  {% else %}
     <a class="btn" href="{{ site.baseurl }}/0/">Library</a> {% comment %}Browse Library{% endcomment %}
     <a class="btn ghost" href="{{ site.baseurl }}/about/">About</a>
+  {% endif %}
 </div>
-{% endif %}
+
 
 {% comment %}
 - Read: **[Library]({{ site.baseurl }}/0/)**
