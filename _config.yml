@@ -3,8 +3,8 @@ title: "Clover Library"
 description: "A canonical archive of explorations across technology, society, and human experience — written to think, not to conclude."
 # description: "A canonical archive for long-term preservation and structured essays on AI and system design."
 # description: "技術、社会、人間の経験を横断する探究の記録を収めた正典アーカイブ。答えを出すためではなく、思考と共にあるために書いています。"
-# lang: en
-lang: ja
+lang: en
+# lang: ja
 
 url: "https://cloversx.github.io"
 baseurl: "/clover-site-en"
