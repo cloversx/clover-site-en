@@ -9,7 +9,7 @@
 {% if page.title == site.title %}
   {%- assign page_title = {{ site.title }} -%}
 {% else %}
-  {%- assign page_title = {{ page.title }} — {{ site.title }} -%}
+  {%- assign page_title = {{ page.title }} - {{ site.title }} -%}
 {% endif %}
 </title>
 {%- comment -%}
@@ -44,7 +44,8 @@ summary があれば優先し、なければ site.description（未設定なら�
 <meta property="og:description" content="{{ desc | escape }}">
 {%- endif -%}
 
-<meta property="og:title" content="{{ page.title | default: site.title | escape }}">
+<meta property="og:title" content="{{ page_title | page.title | default: site.title | escape }}">
+{%- comment -%}<meta property="og:title" content="{{ page.title | default: site.title | escape }}">{%- endcomment -%}
 {%- comment -%}<meta property="og:title" content="{{ page_title | escape }}">{%- endcomment -%}
 <meta property="og:url" content="{{ canonical }}">
 {%- comment -%}
