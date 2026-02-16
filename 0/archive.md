@@ -8,6 +8,8 @@ title_i18n:
   ja: アーカイブ
 ---
 
+{% comment %}
+
 {% if site.lang == "ja" %}
 このページでは、各コンテンツのすべてのアーカイブ版を、コンテンツごとに一覧表示しています。
 {% comment %}このページでは、すべてのコンテンツのアーカイブ版を、エントリごとに一覧表示しています。{% endcomment %}
@@ -17,10 +19,14 @@ This page lists all archived versions of each entry, grouped by entry.
 {% comment %}This page lists archived versions of all contents, grouped by content.{% endcomment %}
 {% endif %}
 
+{% endcomment %}
+
 {% if site.lang == "ja" %}
-アーカイブ版は、過去の状態を固定されたスナップショットとして保存したものです。
+アーカイブ版は、過去の状態を保存したものです。
+{% comment %}アーカイブ版は、過去の状態を固定されたスナップショットとして保存したものです。{% endcomment %}
 {% else %}
-Archived versions preserve fixed snapshots of earlier states.
+Archived versions preserve earlier states.
+{% comment %}Archived versions preserve fixed snapshots of earlier states.{% endcomment %}
 {% comment %}Archived versions are fixed snapshots of earlier versions.{% endcomment %}
 {% comment %}Archived versions represent fixed snapshots of earlier intellectual stages.{% endcomment %}
 {% endif %}
