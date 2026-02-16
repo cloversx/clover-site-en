@@ -9,9 +9,11 @@ title_i18n:
 ---
 
 {% if site.lang == "ja" %}
-このページでは、すべてのコンテンツのアーカイブ版を、エントリごとに一覧表示しています。
+このページでは、各コンテンツのすべてのアーカイブ版を、コンテンツごとに一覧表示しています。
+{% comment %}このページでは、すべてのコンテンツのアーカイブ版を、エントリごとに一覧表示しています。{% endcomment %}
 {% else %}
-This page lists archived versions of all content, grouped by entry.
+This page lists all archived versions of each entry, grouped by entry.
+{% comment %}This page lists archived versions of all content, grouped by entry.{% endcomment %}
 {% comment %}This page lists archived versions of all contents, grouped by content.{% endcomment %}
 {% endif %}
 
