@@ -1,0 +1,42 @@
+<!doctype html>
+<!-- <html lang="{{ site.lang }}"> -->
+<html lang="{{ page.lang | default: site.lang }}">
+
+<head>
+  {% include head.html %}
+</head>
+<body>
+  <header class="site-header">
+    <div class="container">
+      <a class="site-title" href="{{ site.baseurl }}/">{{ site.title }}</a>
+
+      <nav class="nav">
+        <a href="{{ site.baseurl }}/0/">Library</a>
+        <a href="{{ site.baseurl }}/about/">About</a>
+      </nav>
+
+      {% comment %}
+      <nav class="nav">
+        {% if site.lang == "ja" %}
+          <a href="{{ site.baseurl }}/0/">ライブラリ</a> <!-- 図書 -->
+          <a href="{{ site.baseurl }}/about/">このサイトについて</a> <!-- 概要 -->
+        {% else %}
+          <a href="{{ site.baseurl }}/0/">Library</a>
+          <a href="{{ site.baseurl }}/about/">About</a>
+        {% endif %}
+      </nav>
+      {% endcomment %}
+    </div>
+  </header>
+
+  <main class="container">
+    {{ content }}
+  </main>
+
+  <footer class="site-footer">
+    <div class="container">
+      <small>© Clover</small>
+    </div>
+  </footer>
+</body>
+</html>
