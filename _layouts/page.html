@@ -1,0 +1,18 @@
+---
+layout: default
+---
+
+{%- assign lang = page.lang | default: site.lang | default: "en" -%}
+{%- assign title = page.title -%}
+{%- if page.title_i18n and page.title_i18n[lang] -%}
+  {%- assign title = page.title_i18n[lang] -%}
+{%- endif -%}
+
+<article class="page">
+  {% if title and title != "" %}
+    <h1>{{ title }}</h1>
+  {% endif %}
+  <div class="content">
+    {{ content }}
+  </div>
+</article>
