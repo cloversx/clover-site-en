@@ -107,9 +107,11 @@ Build sortable rows: "content_id::invVersionPad|||url"
 {% if group_current_url != "" %}
 <p class="muted">
   {% if site.lang == "ja" %}
-  最新版: <a href="{{ group_current_url | relative_url }}">{{ group_current_title }}</a>
+  <a href="{{ group_current_url | relative_url }}">最新版を見る</a>
+  {% comment %}最新版: <a href="{{ group_current_url | relative_url }}">{{ group_current_title }}</a>{% endcomment %}
   {% else %}
-  Latest version: <a href="{{ group_current_url | relative_url }}">{{ group_current_title }}</a>
+  <a href="{{ group_current_url | relative_url }}">View latest version</a>
+  {% comment %}Latest version: <a href="{{ group_current_url | relative_url }}">{{ group_current_title }}</a>{% endcomment %}
   {% comment %}Current: <a href="{{ group_current_url | relative_url }}">{{ group_current_title }}</a>{% endcomment %}
   {% endif %}
 </p>
