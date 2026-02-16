@@ -87,8 +87,12 @@ Build sortable rows: "content_id::invVersionPad|||url"
 
 {% if group_current_url != "" %}
 <p class="muted">
+  {% if site.lang == "ja" %}
+  最新: <a href="{{ group_current_url | relative_url }}">{{ group_current_title }}</a>
+  {% else %}
   Latest: <a href="{{ group_current_url | relative_url }}">{{ group_current_title }}</a>
   {% comment %}Current: <a href="{{ group_current_url | relative_url }}">{{ group_current_title }}</a>{% endcomment %}
+  {% endif %}
 </p>
 {% endif %}
 
@@ -144,8 +148,12 @@ Build sortable rows: "content_id::invVersionPad|||url"
 
 {% if group_current_url != "" %}
 <p class="muted">
+  {% if site.lang == "ja" %}
+  最新: <a href="{{ group_current_url | relative_url }}">{{ group_current_title }}</a>
+  {% else %}
   Latest: <a href="{{ group_current_url | relative_url }}">{{ group_current_title }}</a>
   {% comment %}Current: <a href="{{ group_current_url | relative_url }}">{{ group_current_title }}</a>{% endcomment %}
+  {% endif %}
 </p>
 {% endif %}
 {% endif %}
