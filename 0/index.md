@@ -46,4 +46,9 @@ Liquid の “空白トリムが効きすぎて、見出し ## ... と <ul> が�
 {% comment %}{% include content-list-latest.html show_date=true %}{% endcomment %}
 {% include content_section.html mode="latest" show_date=true %}
 
-See also: [Archive]({{ "/0/archive/" | relative_url }})
+{% if site.lang == "ja" %}
+[- アーカイブ -]({{ "/0/archive/" | relative_url }})
+{% else %}
+[- Archive -]({{ "/0/archive/" | relative_url }})
+{% comment %}See also: [Archive]({{ "/0/archive/" | relative_url }}){% endcomment %}
+{% endif %}
