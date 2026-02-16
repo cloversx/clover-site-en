@@ -10,7 +10,7 @@ Welcome.
 
 {% comment %}A quiet canonical archive for long-term preservation.{% endcomment %}
 
-{% if site.lang == "ja" %}
+{% if lang == "ja" %}
   <div class="home-links">
     <a class="btn" href="{{ site.baseurl }}/0/">図書</a>
     <a class="btn ghost" href="{{ site.baseurl }}/about/">概要</a>
@@ -35,7 +35,7 @@ Welcome.
 -%}
 
 {%- if featured_items and featured_items.size > 0 -%}
-{% if site.lang == "ja" %}
+{% if lang == "ja" %}
 ## 注目
 {% else %}
 ## Featured {% comment %}（代表作）{% endcomment %}
@@ -57,7 +57,7 @@ Liquid の “空白トリムが効きすぎて、見出し ## ... と <ul> が�
 {% comment %}<hr class="section-divider" />{% endcomment %}
 {%- endif -%}
 
-{% if site.lang == "ja" %}
+{% if lang == "ja" %}
 ## 最新
 {% else %}
 ## Latest {% comment %}（最新）{% endcomment %}
