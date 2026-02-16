@@ -1,6 +1,10 @@
 ---
 layout: page
-title: ""
+title: "Clover Library"
+
+title_i18n:
+  en: "Clover Library"
+  ja: "Clover Library"
 ---
 
 {%- assign lang = page.lang | default: site.lang | default: "en" -%}
