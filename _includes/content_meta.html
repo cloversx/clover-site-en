@@ -27,7 +27,8 @@ content_meta.html (vNext)
 
   {%- if page.version -%}
     <p>
-      <strong>{% if is_ja %}アーカイブ:{% else %}Archive:{% endif %}</strong>
+      <strong>{% if is_ja %}アーカイブ版:{% else %}Archived version:{% endif %}</strong>
+      {%- comment -%}<strong>{% if is_ja %}アーカイブ:{% else %}Archive:{% endif %}</strong>{%- endcomment -%}
       <span class="archive-version">v{{ page.version }}</span>
     </p>
   {%- endif -%}
@@ -108,7 +109,8 @@ content_meta.html (vNext)
   {%- if archives and archives.size > 0 -%}
     {%- assign archives_sorted = archives | sort: "version" | reverse -%}
     <p>
-      <strong>{% if is_ja %}アーカイブ:{% else %}Archives:{% endif %}</strong>
+      <strong>{% if is_ja %}アーカイブ版:{% else %}Archived versions:{% endif %}</strong>
+      {%- comment -%}<strong>{% if is_ja %}アーカイブ:{% else %}Archives:{% endif %}</strong>{%- endcomment -%}
       <span class="archive-links">
         {%- for a in archives_sorted -%}
           <a href="{{ a.url | relative_url }}" class="archive-link">v{{ a.version }}</a>
