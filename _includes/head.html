@@ -4,14 +4,18 @@
 <link rel="alternate" type="application/rss+xml" title="{{ site.title }} RSS" href="{{ "/feed.xml" | absolute_url }}">
 {%- comment -%}<link rel="alternate" type="application/rss+xml" title="{{ site.title }} RSS" href="{{ site.baseurl }}/feed.xml">{%- endcomment -%}
 
-{%- assign page_title = page.title | default: site.title -%}
-<title>
-{% if page.title == site.title %}
-  {%- assign page_title = {{ site.title }} -%}
-{% else %}
-  {%- assign page_title = {{ page.title }} | append: "-" | append: {{ site.title }} -%}
-{% endif %}
-</title>
+{%- assign site_title = site.title | default: "Site" -%}
+
+{%- capture page_title -%}
+{%- if page.title and page.title != site_title -%}
+{{ page.title }} - {{ site_title }}
+{%- else -%}
+{{ site_title }}
+{%- endif -%}
+{%- endcapture -%}
+
+<title>{{ page_title | strip | escape }}</title>
+
 {%- comment -%}
 {%- assign page_title = page.title | default: site.title -%}
 <title>{{ page_title }}{% if page.title %} | {{ site.title }}{% endif %}</title>
@@ -40,11 +44,13 @@ summary があれば優先し、なければ site.description（未設定なら�
 {%- endif -%}
 {%- comment -%}{%- assign desc = page.summary | default: site.description -%}{%- endcomment -%}
 {%- if desc and desc != "" -%}
-<meta name="description" content="{{ desc | escape }}">
-<meta property="og:description" content="{{ desc | escape }}">
+<meta name="description" content="{{ desc | strip | escape }}">
+{%- comment -%}<meta name="description" content="{{ desc | escape }}">{%- endcomment -%}
+<meta property="og:description" content="{{ desc | strip | escape }}">
+{%- comment -%}<meta property="og:description" content="{{ desc | escape }}">{%- endcomment -%}
 {%- endif -%}
 
-<meta property="og:title" content="{{ page_title | page.title | default: site.title | escape }}">
+<meta property="og:title" content="{{ page_title | strip | escape }}">
 {%- comment -%}<meta property="og:title" content="{{ page.title | default: site.title | escape }}">{%- endcomment -%}
 {%- comment -%}<meta property="og:title" content="{{ page_title | escape }}">{%- endcomment -%}
 <meta property="og:url" content="{{ canonical }}">
@@ -76,9 +82,11 @@ product	商品ページ
 {%- endif -%}
 <meta property="og:image" content="{{ site.url }}{{ og_image }}">
 <meta name="twitter:card" content="summary_large_image">
-<meta name="twitter:title" content="{{ page_title | escape }}">
+<meta name="twitter:title" content="{{ page_title | strip | escape }}">
+{%- comment -%}<meta name="twitter:title" content="{{ page_title | escape }}">{%- endcomment -%}
 {%- if desc and desc != "" -%}
-<meta name="twitter:description" content="{{ desc | escape }}">
+<meta name="twitter:description" content="{{ desc | strip | escape }}">
+{%- comment -%}<meta name="twitter:description" content="{{ desc | escape }}">{%- endcomment -%}
 {%- endif -%}
 <meta name="twitter:image" content="{{ site.url }}{{ og_image }}">
 {%- comment -%}
