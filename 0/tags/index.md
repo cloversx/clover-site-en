@@ -16,10 +16,12 @@ pinned_tags:
 ---
 
 {% if site.lang == "ja" %}
-このページでは、コンテンツの最新版のみをタグごとに一覧表示しています。（アーカイブ版を除きます。）
+このページでは、各コンテンツの最新版をタグごとに一覧表示しています。
+{%- comment -%}このページでは、コンテンツの最新版のみをタグごとに一覧表示しています。（アーカイブ版を除きます。）{%- endcomment -%}
 {%- comment -%}このページでは、現在のコンテンツをタグごとに一覧表示しています。{%- endcomment -%}
 {% else %}
-This page lists current content grouped by tag.
+This page lists the latest version of each entry, grouped by tag.
+{%- comment -%}This page lists current content grouped by tag.{%- endcomment -%}
 {%- comment -%}This page groups current contents by tags.{%- endcomment -%}
 {% endif %}
 
