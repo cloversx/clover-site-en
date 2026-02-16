@@ -76,14 +76,16 @@ content_meta.html (vNext)
 
   {%- if page.first_published -%}
     <p>
-      <strong>{% if is_ja %}初公開:{% else %}First published:{% endif %}</strong>
+      <strong>{% if is_ja %}初版公開日:{% else %}First published:{% endif %}</strong>
+      {%- comment -%}<strong>{% if is_ja %}初公開:{% else %}First published:{% endif %}</strong>{%- endcomment -%}
       {{ page.first_published }}
     </p>
   {%- endif -%}
 
   {%- if page.last_updated -%}
     <p>
-      <strong>{% if is_ja %}最終更新:{% else %}Last updated:{% endif %}</strong>
+      <strong>{% if is_ja %}最終更新日:{% else %}Last updated:{% endif %}</strong>
+      {%- comment -%}<strong>{% if is_ja %}最終更新:{% else %}Last updated:{% endif %}</strong>{%- endcomment -%}
       {{ page.last_updated }}
     </p>
   {%- endif -%}
