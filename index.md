@@ -1,0 +1,75 @@
+---
+layout: page
+title: ""
+---
+
+# Clover Library
+{% comment %}### - Clover Library -{% endcomment %}
+
+Welcome.
+
+{% comment %}A quiet canonical archive for long-term preservation.{% endcomment %}
+
+{% if site.lang == "ja" %}
+  <div class="home-links">
+    <a class="btn" href="{{ site.baseurl }}/0/">図書</a>
+    <a class="btn ghost" href="{{ site.baseurl }}/about/">概要</a>
+{% else %}
+  <div class="home-links">
+    <a class="btn" href="{{ site.baseurl }}/0/">Library</a> {% comment %}Browse Library{% endcomment %}
+    <a class="btn ghost" href="{{ site.baseurl }}/about/">About</a>
+</div>
+{% endif %}
+
+{% comment %}
+- Read: **[Library]({{ site.baseurl }}/0/)**
+- About: **[About]({{ site.baseurl }}/about/)**
+{% endcomment %}
+
+{% comment %}---{% endcomment %}
+
+{%- assign featured_items = site.pages
+  | where: "layout", "content"
+  | where_exp: "p", "p.is_archive != true"
+  | where: "featured", true
+-%}
+
+{%- if featured_items and featured_items.size > 0 -%}
+{% if site.lang == "ja" %}
+## 注目
+{% else %}
+## Featured {% comment %}（代表作）{% endcomment %}
+{% endif %}
+
+{% comment %}#### Featured {% comment %}（代表作）{% endcomment %}{% endcomment %}
+
+{% comment %}- (Add links to representative contents here){% endcomment %}
+{% comment %}- [AI Isn’t Dangerous. Putting AI Inside an “Evaluation Structure” Is.]({{ site.baseurl }}/0/ai-evaluation-structure/){% endcomment %}
+
+{% comment %}
+include は トリム無し
+Liquid の “空白トリムが効きすぎて、見出し ## ... と <ul> が同じ行に連結されてしまう
+{% endcomment %}
+{% comment %}{% include content-list-featured.html show_badge=false featured_style=false show_date=false %}{% endcomment %}
+{% include content_section.html mode="featured" show_badge=false featured_style=false show_date=false %}
+
+
+{% comment %}<hr class="section-divider" />{% endcomment %}
+{%- endif -%}
+
+{% if site.lang == "ja" %}
+## 最新
+{% else %}
+## Latest {% comment %}（最新）{% endcomment %}
+{% endif %}
+{% comment %}#### Latest {% comment %}（最新）{% endcomment %}{% endcomment %}
+
+{% comment %}- (Add links to latest contents here){% endcomment %}
+{% comment %}- [AI Isn’t Dangerous. Putting AI Inside an “Evaluation Structure” Is.]({{ site.baseurl }}/0/ai-evaluation-structure/){% endcomment %}
+
+{% comment %}
+include は トリム無し
+Liquid の “空白トリムが効きすぎて、見出し ## ... と <ul> が同じ行に連結されてしまう
+{% endcomment %}
+{% comment %}{% include content-list-latest.html limit=3 show_date=true %}{% endcomment %}
+{% include content_section.html mode="latest" limit=3 show_date=true %}
