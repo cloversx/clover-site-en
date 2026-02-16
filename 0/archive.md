@@ -147,7 +147,7 @@ Build sortable rows: "content_id::invVersionPad|||url"
 
   <li class="archive-item">
     <div class="archive-title">
-      <a href="{{ p.url | relative_url }}">Version {{ p.version }}</a>
+      <a href="{{ p.url | relative_url }}">Archived version {{ p.version }}</a>{% comment %}Version{% endcomment %}
       {% if p.last_updated and p.last_updated != "" %}
         <span class="muted"> · {{ p.last_updated }}</span>
       {% elsif p.first_published and p.first_published != "" %}
