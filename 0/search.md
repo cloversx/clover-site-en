@@ -62,7 +62,7 @@ pinned_tags:
 
   const I18N = {
     en: {
-      placeholder: 'Search titles, summaries, tags, "exact phrase" or id',
+      placeholder: 'Search titles, summaries, tags, "exact phrase" or id.',
                    // {% comment %}'Search titles, summaries, or tags… (tip: tag:ai-safety, content_id:ai-evaluation-structure, or "exact phrase")',{% endcomment %}
                    // {% comment %}'Search title / summary / tags… (tip: tag:ai-safety, content_id:ai-evaluation-structure, or "exact phrase")',{% endcomment %}
       onlyCurrent: "Latest only",
