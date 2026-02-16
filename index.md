@@ -9,9 +9,11 @@ title_i18n:
 
 {%- assign lang = page.lang | default: site.lang | default: "en" -%}
 
+{% comment %}
 # Clover Library
 {% comment %}### - Clover Library -{% endcomment %}
 <br>
+{% endcomment %}
 
 {% comment %}Welcome.{% endcomment %}
 
