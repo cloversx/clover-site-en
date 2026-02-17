@@ -1,0 +1,378 @@
+:root{
+  --bg:#ffffff;
+  --fg:#111111;
+  --muted:#5a5a5a;
+  --border:#e9e9e9;
+  --link:#1f5fbf;
+  --code-bg:#f6f7f8;
+  --soft:#fafafa;
+}
+
+@media (prefers-color-scheme: dark){
+  :root{
+    --bg:#0c0d10;
+    --fg:#e9e9e9;
+    --muted:#b5b5b5;
+    --border:#242833;
+    --link:#8ab4f8;
+    --code-bg:#151823;
+    --soft:#0f1117;
+  }
+}
+
+*{ box-sizing:border-box; }
+html{ scroll-behavior:smooth; }
+body{
+  margin:0;
+  background:var(--bg);
+  color:var(--fg);
+  font-family: ui-sans-serif, system-ui, -apple-system, "Segoe UI", Roboto, "Noto Sans", "Hiragino Sans", "Yu Gothic", sans-serif;
+  line-height:1.85;
+  letter-spacing:0.01em;
+}
+
+.container{
+  max-width: 860px;
+  margin: 0 auto;
+  padding: 22px;
+}
+
+.site-header{
+  position: sticky;
+  top: 0;
+  z-index: 10;
+  background: color-mix(in srgb, var(--bg) 94%, transparent);
+  backdrop-filter: blur(10px);
+  border-bottom: 1px solid var(--border);
+}
+
+.site-header .container{
+  display:flex;
+  align-items:center;
+  justify-content:space-between;
+  gap:16px;
+}
+
+/* モバイルなどで横幅が極端に狭い場合に、「Library / About」などのナビ部分をタイトルの下に表示する。 */
+/*
+@media (max-width: 560px){
+  .site-header .container{
+    flex-direction: column;
+    align-items: flex-start;
+  }
+  .nav a{ margin-left: 0; margin-right: 12px; }
+}
+*/
+
+.site-title{
+  font-weight: 750;
+  text-decoration:none;
+  color:var(--fg);
+  letter-spacing:0.2px;
+}
+
+.nav a{
+  margin-left: 12px;
+  text-decoration:none;
+  color:var(--muted);
+}
+.nav a:hover{ color:var(--fg); }
+
+.site-footer{
+  margin-top: 54px;
+  padding: 18px 0;
+  border-top: 1px solid var(--border);
+  color: var(--muted);
+}
+
+a{ color:var(--link); }
+a:hover{ text-decoration:underline; }
+
+.page h1, .content h1{
+  font-size: clamp(1.6rem, 2.4vw, 2.15rem);
+  line-height: 1.25;
+  margin: 22px 0 12px;
+  letter-spacing: -0.01em;
+}
+
+.content{
+  font-size: 1.02rem;
+}
+
+.content p{ margin: 0.95em 0; }
+.content ul, .content ol{ padding-left: 1.25em; }
+.content li{ margin: 0.35em 0; }
+
+.content h2{
+  margin-top: 2.1em;
+  padding-top: 0.25em;
+  border-top: 1px solid var(--border);
+  font-size: 1.35rem;
+}
+.content h3{
+  margin-top: 1.5em;
+  font-size: 1.15rem;
+}
+
+.content blockquote{
+  margin: 1.2em 0;
+  padding: 0.8em 1em;
+  border-left: 3px solid var(--border);
+  background: var(--soft);
+  color: var(--muted);
+}
+
+.content code{
+  font-family: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, "Noto Sans Mono", monospace;
+  font-size: 0.95em;
+  background: var(--code-bg);
+  padding: 0.15em 0.35em;
+  border-radius: 6px;
+}
+
+.content pre{
+  background: var(--code-bg);
+  border: 1px solid var(--border);
+  padding: 14px 16px;
+  border-radius: 12px;
+  overflow-x: auto;
+}
+.content pre code{
+  background: transparent;
+  padding: 0;
+}
+
+.content img{
+  max-width: 100%;
+  height: auto;
+  border-radius: 14px;
+  border: 1px solid var(--border);
+}
+
+.content-meta{
+  font-size: 0.95rem;
+  color: var(--muted);
+  padding: 12px 0 10px;
+  border-bottom: 1px solid var(--border);
+  margin-bottom: 18px;
+}
+
+/* content_meta の Archives リンクが詰まるのを防ぐ 
+   最初のリンクの左が詰まるしmargin-leftも入れるとリンク間があきすぎてしまうのでテンプレで &nbsp; を入れて対応
+*/
+.content-meta a{
+  display: inline-block;
+  /* margin-right: 0.5rem; */
+}
+
+.tag{
+  display: inline-block;
+  padding: 2px 10px;
+  border: 1px solid var(--border);
+  border-radius: 999px;
+  font-size: 0.85rem;
+  margin-right: 6px;
+  margin-bottom: 6px;
+  color: var(--muted);
+  background: transparent;
+}
+
+.tag-row {
+  margin-top: 0.35rem;
+  display: flex;
+  gap: 0.35rem;
+  flex-wrap: wrap;
+}
+
+/*
+.tag-pill {
+  border: 1px solid rgba(0,0,0,0.15);
+  background: transparent;
+  border-radius: 999px;
+  padding: 0.15rem 0.5rem;
+  font-size: 0.85rem;
+  cursor: pointer;
+}
+
+.tag-pill.is-active {
+  font-weight: 700;
+  text-decoration: underline;
+}
+
+.tag-pill.is-active::after {
+  content: " ✓";
+}
+*/
+/* 通常タグ */
+.tag-pill {
+  display: inline-block;
+  padding: 0.15rem 0.5rem;
+  margin: 0.1rem 0.2rem;
+  border-radius: 6px;
+
+  border: 1px solid rgba(0,0,0,0.2);
+  background: rgba(0,0,0,0.03);
+
+  cursor: pointer;
+  user-select: none;
+
+  box-shadow: 0 1px 0 rgba(0,0,0,0.15);
+  transition:
+    transform 0.05s ease,
+    box-shadow 0.05s ease,
+    background 0.05s ease;
+}
+
+/* hover（浮く） */
+.tag-pill:hover {
+  background: rgba(0,0,0,0.06);
+}
+
+/* active（クリック瞬間） */
+.tag-pill:active {
+  transform: translateY(1px);
+  box-shadow: 0 0 0 rgba(0,0,0,0);
+}
+
+/* 選択中（押し込まれた状態） */
+.tag-pill.is-active {
+  background: rgba(0,0,0,0.12);
+  box-shadow: inset 0 1px 2px rgba(0,0,0,0.25);
+  transform: translateY(1px);
+
+  font-weight: 600;
+}
+
+.tag-panel { margin: 1rem 0; }
+.tag-list { display: flex; flex-wrap: wrap; gap: .5rem; margin-top: .5rem; }
+
+.home-links{
+  display:flex;
+  gap:10px;
+  margin: 14px 0 6px;
+  flex-wrap: wrap;
+}
+
+.btn{
+  display:inline-block;
+  padding: 8px 12px;
+  border: 1px solid var(--border);
+  border-radius: 12px;
+  text-decoration:none;
+  color: var(--fg);
+  background: transparent;
+}
+
+.btn:hover{ text-decoration:none; border-color: color-mix(in srgb, var(--border) 60%, var(--fg)); }
+
+.btn.ghost{
+  color: var(--muted);
+}
+
+.content-list{ list-style:none; padding-left:0; margin: 0; }
+.content-list li{
+  border: 1px solid var(--border);
+  border-radius: 14px;
+  padding: 14px 16px;
+  margin: 12px 0;
+  background: transparent;
+}
+.content-list a{
+  font-weight: 700;
+  text-decoration:none;
+}
+.content-list a:hover{ text-decoration:underline; }
+.muted{ color: var(--muted); margin-top: 6px; }
+
+.archive-list {
+  margin-top: 1rem;
+}
+
+.archive-item {
+  margin-bottom: 1.2rem;
+}
+
+.archive-title {
+  font-weight: 500;
+}
+
+.archive-summary {
+  margin-top: 0.2rem;
+  font-size: 0.95rem;
+}
+
+.archive-notice { color: #b00020; }
+
+.section-divider{
+  border: 0;
+  border-top: 1px solid var(--border);
+  margin: 22px 0;
+}
+
+.content-card{ /* 既存があれば上書き不要 */ }
+
+.content-card.is-featured{
+  background: var(--soft);
+  /*
+  border-left: 4px solid currentColor;
+  padding-left: 14px;
+  */
+}
+/*
+.content-card.is-featured{
+  background: var(--soft);
+}
+*/
+
+.card-top{
+  display:flex;
+  align-items:baseline;
+  justify-content:space-between;
+  gap: 12px;
+}
+
+.badge{
+  font-size: 0.78rem;
+  color: var(--muted);
+  border: 1px solid var(--border);
+  border-radius: 999px;
+  padding: 2px 8px;
+  white-space: nowrap;
+}
+
+.badge.is-current {
+  /* no explicit colors to keep theme-neutral */
+}
+
+.badge.is-archive {
+  /* no explicit colors to keep theme-neutral */
+}
+
+.search-box {
+  display: flex;
+  gap: 0.75rem;
+  align-items: center;
+  flex-wrap: wrap;
+  margin: 1rem 0 1rem;
+}
+
+.search-input {
+  flex: 1 1 320px;
+  padding: 0.6rem 0.75rem;
+  border: 1px solid rgba(0,0,0,0.15);
+  border-radius: 10px;
+}
+
+.search-toggle {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.4rem;
+  user-select: none;
+}
+
+.search-select{
+  padding: .35rem .5rem;
+  border: 1px solid var(--border, #ccc);
+  border-radius: .5rem;
+  background: transparent;
+}
