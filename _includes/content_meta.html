@@ -1,0 +1,180 @@
+{%- comment -%}
+content_meta.html (vNext)
+- version: integer model
+- /0/<dir>/ and /0/<dir>/vN/
+- no slug dependency
+- robust current link via content_id
+- archive links only for existing pages
+{%- endcomment -%}
+
+{%- assign lang = page.lang | default: site.lang | default: "en" | downcase -%}
+
+{%- assign is_ja = false -%}
+{%- if lang == "ja" -%}
+  {%- assign is_ja = true -%}
+{%- endif -%}
+
+{%- assign is_archive = false -%}
+{%- if page.is_archive == true or page.is_archive == "true" -%}
+  {%- assign is_archive = true -%}
+{%- endif -%}
+
+{%- assign cid = page.content_id -%}
+
+{%- comment -%}
+Find current page by content_id (used by both archive and current display)
+{%- endcomment -%}
+{%- assign current_page = nil -%}
+{%- if cid and cid != "" -%}
+  {%- for p in site.pages -%}
+    {%- if p.layout == "content" and p.is_archive != true and p.content_id == cid -%}
+      {%- assign current_page = p -%}
+      {%- break -%}
+    {%- endif -%}
+  {%- endfor -%}
+{%- endif -%}
+
+<div class="content-meta">
+
+{%- if is_archive -%}
+
+  <p class="archive-notice">
+    {%- if is_ja -%}
+      これはアーカイブ版です。
+    {%- else -%}
+      This is an archived version.
+    {%- endif -%}
+  </p>
+
+  {%- if current_page -%}
+    {%- assign latest_ver = current_page.version | default: "" -%}
+    <p>
+      <a href="{{ current_page.url | relative_url }}">
+        {%- if is_ja -%}最新版を見る{%- else -%}View latest version{%- endif -%}
+        {%- if latest_ver != "" -%} (v{{ latest_ver }}){%- endif -%}
+      </a>
+    </p>
+  {%- else -%}
+    {%- comment -%}
+    Fallback: remove trailing /vN/ by split (kept as fallback only)
+    {%- endcomment -%}
+    {%- assign parts = page.url | split: "/v" -%}
+    {%- assign current_path = parts[0] | append: "/" -%}
+    <p>
+      <a href="{{ current_path | relative_url }}">
+        {%- if is_ja -%}最新版を見る{%- else -%}View latest version{%- endif -%}
+      </a>
+    </p>
+  {%- endif -%}
+
+  {%- if page.version -%}
+    <p>
+      <strong>{% if is_ja %}アーカイブ版:{% else %}Archived version:{% endif %}</strong>
+      <span class="archive-version">v{{ page.version }}</span>
+    </p>
+  {%- endif -%}
+
+  {%- if page.first_published and page.first_published != "" -%}
+    <p>
+      <strong>{% if is_ja %}初版公開日:{% else %}First published:{% endif %}</strong>
+      {{ page.first_published }}
+    </p>
+  {%- endif -%}
+
+  {%- if page.last_updated and page.last_updated != "" -%}
+    <p>
+      <strong>{% if is_ja %}最終更新日:{% else %}Last updated:{% endif %}</strong>
+      {{ page.last_updated }}
+    </p>
+
+    {%- if current_page and current_page.version and current_page.version != "" -%}
+      <p>
+        <strong>{% if is_ja %}最新版:{% else %}Latest version:{% endif %}</strong>
+        v{{ current_page.version }}
+      </p>
+    {%- endif -%}
+
+  {%- else -%}
+    {%- if current_page and current_page.version and current_page.version != "" -%}
+      <p>
+        <strong>{% if is_ja %}最新版:{% else %}Latest version:{% endif %}</strong>
+        v{{ current_page.version }}
+      </p>
+    {%- endif -%}
+  {%- endif -%}
+
+  {%- comment -%}
+  Tags on archive page: use latest/current tags if available
+  {%- endcomment -%}
+  {%- assign show_tags = nil -%}
+  {%- if current_page and current_page.tags -%}
+    {%- assign show_tags = current_page.tags -%}
+  {%- else -%}
+    {%- assign show_tags = page.tags -%}
+  {%- endif -%}
+
+  {%- if show_tags -%}
+    <p>
+      <strong>{% if is_ja %}タグ:{% else %}Tags:{% endif %}</strong>
+      {%- for t in show_tags -%}
+        <span class="tag">{{ t }}</span>
+      {%- endfor -%}
+    </p>
+  {%- endif -%}
+
+{%- else -%}
+
+  {%- if page.version -%}
+    <p>
+      <strong>{% if is_ja %}バージョン:{% else %}Version:{% endif %}</strong>
+      v{{ page.version }}
+    </p>
+  {%- endif -%}
+
+  {%- if page.first_published -%}
+    <p>
+      <strong>{% if is_ja %}初版公開日:{% else %}First published:{% endif %}</strong>
+      {{ page.first_published }}
+    </p>
+  {%- endif -%}
+
+  {%- if page.last_updated -%}
+    <p>
+      <strong>{% if is_ja %}最終更新日:{% else %}Last updated:{% endif %}</strong>
+      {{ page.last_updated }}
+    </p>
+  {%- endif -%}
+
+  {%- assign archives = "" | split: "" -%}
+  {%- if cid and cid != "" -%}
+    {%- for p in site.pages -%}
+      {%- if p.layout == "content" and p.is_archive == true and p.content_id == cid -%}
+        {%- assign archives = archives | push: p -%}
+      {%- endif -%}
+    {%- endfor -%}
+  {%- endif -%}
+
+  {%- if archives and archives.size > 0 -%}
+    {%- assign archives_sorted = archives | sort: "version" | reverse -%}
+    <p>
+      <strong>{% if is_ja %}アーカイブ版:{% else %}Archived versions:{% endif %}</strong>
+      <span class="archive-links">
+        {%- for a in archives_sorted -%}
+          <a href="{{ a.url | relative_url }}" class="archive-link">v{{ a.version }}</a>
+        {%- endfor -%}
+      </span>
+    </p>
+  {%- endif -%}
+
+  {%- if page.tags -%}
+    <p>
+      <strong>{% if is_ja %}タグ:{% else %}Tags:{% endif %}</strong>
+      {%- for t in page.tags -%}
+        <span class="tag">{{ t }}</span>
+      {%- endfor -%}
+    </p>
+  {%- endif -%}
+
+{%- endif -%}
+
+</div>
