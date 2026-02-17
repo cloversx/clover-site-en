@@ -13,9 +13,6 @@
 {{ site_title }}
 {%- endif -%}
 {%- endcapture -%}
-{%- comment -%}
-{%- if page.title and page.title != site_title -%}
-{%- endcomment -%}
 
 <title>{{ page_title | strip | escape }}</title>
 
