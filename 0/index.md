@@ -30,9 +30,9 @@ Explore links (Search / Tags / Archive)
     </div>
     <div class="explore-desc">
       {% if site.lang == "ja" %}
-      タイトル・タグ・content_idから探す
+      語句・タグ・タイトル・content_idから探す
       {% else %}
-      Find by title, tags, or content_id
+      Find by phrases, tags, title, or content_id
       {% endif %}
     </div>
   </a>
@@ -45,7 +45,7 @@ Explore links (Search / Tags / Archive)
       {% if site.lang == "ja" %}
       タグごとに最新版を一覧表示
       {% else %}
-      Browse current versions grouped by tag
+      Browse latest versions grouped by tag
       {% endif %}
     </div>
   </a>
