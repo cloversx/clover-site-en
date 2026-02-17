@@ -1,0 +1,133 @@
+{%- comment -%}
+content_meta.html (vNext)
+- version: integer model
+- /0/<dir>/ and /0/<dir>/vN/
+- no slug dependency
+- robust current link via content_id
+- archive links only for existing pages
+{%- endcomment -%}
+
+{%- assign lang = page.lang | default: site.lang | default: "en" | downcase -%}
+
+{%- assign is_ja = false -%}
+{%- if lang == "ja" -%}
+  {%- assign is_ja = true -%}
+{%- endif -%}
+
+{%- assign is_archive = false -%}
+{%- if page.is_archive == true or page.is_archive == "true" -%}
+  {%- assign is_archive = true -%}
+{%- endif -%}
+
+{%- assign cid = page.content_id -%}
+
+<div class="content-meta">
+
+{%- if is_archive -%}
+
+  {%- if page.version -%}
+    <p>
+      <strong>{% if is_ja %}アーカイブ版:{% else %}Archived version:{% endif %}</strong>
+      {%- comment -%}<strong>{% if is_ja %}アーカイブ:{% else %}Archive:{% endif %}</strong>{%- endcomment -%}
+      <span class="archive-version">v{{ page.version }}</span>
+    </p>
+  {%- endif -%}
+
+  {%- comment -%}Find current page by content_id{%- endcomment -%}
+  {%- assign current_page = nil -%}
+  {%- if cid and cid != "" -%}
+    {%- for p in site.pages -%}
+      {%- if p.layout == "content" and p.is_archive != true and p.content_id == cid -%}
+        {%- assign current_page = p -%}
+        {%- break -%}
+      {%- endif -%}
+    {%- endfor -%}
+  {%- endif -%}
+
+  {%- if current_page -%}
+    <p>
+      <a href="{{ current_page.url | relative_url }}">
+        {% if is_ja %}最新版を見る{% else %}View latest version{% endif %}
+        {%- comment -%}{% if is_ja %}現行版へ{% else %}Go to current version{% endif %}{%- endcomment -%}
+      </a>
+    </p>
+  {%- else -%}
+    {%- comment -%}
+    Fallback: remove trailing /vN/ by split.
+    (kept as fallback only)
+    {%- endcomment -%}
+    {%- assign parts = page.url | split: "/v" -%}
+    {%- assign current_path = parts[0] | append: "/" -%}
+    <p>
+      <a href="{{ current_path | relative_url }}">
+        {% if is_ja %}最新版を見る{% else %}View latest version{% endif %}
+        {%- comment -%}{% if is_ja %}現行版へ{% else %}Go to current version{% endif %}{%- endcomment -%}
+      </a>
+    </p>
+  {%- endif -%}
+
+{%- else -%}
+
+  {%- if page.version -%}
+    <p>
+      <strong>{% if is_ja %}バージョン:{% else %}Version:{% endif %}</strong>
+      {{ page.version }}
+    </p>
+  {%- endif -%}
+
+  {%- if page.first_published -%}
+    <p>
+      <strong>{% if is_ja %}初版公開日:{% else %}First published:{% endif %}</strong>
+      {%- comment -%}<strong>{% if is_ja %}初公開:{% else %}First published:{% endif %}</strong>{%- endcomment -%}
+      {{ page.first_published }}
+    </p>
+  {%- endif -%}
+
+  {%- if page.last_updated -%}
+    <p>
+      <strong>{% if is_ja %}最終更新日:{% else %}Last updated:{% endif %}</strong>
+      {%- comment -%}<strong>{% if is_ja %}最終更新:{% else %}Last updated:{% endif %}</strong>{%- endcomment -%}
+      {{ page.last_updated }}
+    </p>
+  {%- endif -%}
+
+  {%- comment -%}
+  Archive links: list existing archive pages by content_id
+  - only show real ones
+  - sort version desc
+  {%- endcomment -%}
+
+  {%- assign archives = "" | split: "" -%}
+  {%- if cid and cid != "" -%}
+    {%- for p in site.pages -%}
+      {%- if p.layout == "content" and p.is_archive == true and p.content_id == cid -%}
+        {%- assign archives = archives | push: p -%}
+      {%- endif -%}
+    {%- endfor -%}
+  {%- endif -%}
+
+  {%- if archives and archives.size > 0 -%}
+    {%- assign archives_sorted = archives | sort: "version" | reverse -%}
+    <p>
+      <strong>{% if is_ja %}アーカイブ版:{% else %}Archived versions:{% endif %}</strong>
+      {%- comment -%}<strong>{% if is_ja %}アーカイブ:{% else %}Archives:{% endif %}</strong>{%- endcomment -%}
+      <span class="archive-links">
+        {%- for a in archives_sorted -%}
+          <a href="{{ a.url | relative_url }}" class="archive-link">v{{ a.version }}</a>
+        {%- endfor -%}
+      </span>
+    </p>
+  {%- endif -%}
+
+  {%- if page.tags -%}
+    <p>
+      <strong>{% if is_ja %}タグ:{% else %}Tags:{% endif %}</strong>
+      {%- for t in page.tags -%}
+        <span class="tag">{{ t }}</span>
+      {%- endfor -%}
+    </p>
+  {%- endif -%}
+
+{%- endif -%}
+
+</div>
