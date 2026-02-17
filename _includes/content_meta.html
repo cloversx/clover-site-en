@@ -28,8 +28,25 @@ content_meta.html (vNext)
   {%- if page.version -%}
     <p>
       <strong>{% if is_ja %}アーカイブ版:{% else %}Archived version:{% endif %}</strong>
-      {%- comment -%}<strong>{% if is_ja %}アーカイブ:{% else %}Archive:{% endif %}</strong>{%- endcomment -%}
       <span class="archive-version">v{{ page.version }}</span>
+    </p>
+  {%- endif -%}
+
+  {%- comment -%}
+  ✅ Show dates on archive pages too (use the archive page's own front matter)
+  {%- endcomment -%}
+
+  {%- if page.first_published and page.first_published != "" -%}
+    <p>
+      <strong>{% if is_ja %}初版公開日:{% else %}First published:{% endif %}</strong>
+      {{ page.first_published }}
+    </p>
+  {%- endif -%}
+
+  {%- if page.last_updated and page.last_updated != "" -%}
+    <p>
+      <strong>{% if is_ja %}最終更新日:{% else %}Last updated:{% endif %}</strong>
+      {{ page.last_updated }}
     </p>
   {%- endif -%}
 
@@ -45,10 +62,11 @@ content_meta.html (vNext)
   {%- endif -%}
 
   {%- if current_page -%}
+    {%- assign latest_ver = current_page.version | default: "" -%}
     <p>
       <a href="{{ current_page.url | relative_url }}">
         {% if is_ja %}最新版を見る{% else %}View latest version{% endif %}
-        {%- comment -%}{% if is_ja %}現行版へ{% else %}Go to current version{% endif %}{%- endcomment -%}
+        {%- if latest_ver != "" -%} (v{{ latest_ver }}){%- endif -%}
       </a>
     </p>
   {%- else -%}
@@ -61,7 +79,6 @@ content_meta.html (vNext)
     <p>
       <a href="{{ current_path | relative_url }}">
         {% if is_ja %}最新版を見る{% else %}View latest version{% endif %}
-        {%- comment -%}{% if is_ja %}現行版へ{% else %}Go to current version{% endif %}{%- endcomment -%}
       </a>
     </p>
   {%- endif -%}
@@ -78,7 +95,6 @@ content_meta.html (vNext)
   {%- if page.first_published -%}
     <p>
       <strong>{% if is_ja %}初版公開日:{% else %}First published:{% endif %}</strong>
-      {%- comment -%}<strong>{% if is_ja %}初公開:{% else %}First published:{% endif %}</strong>{%- endcomment -%}
       {{ page.first_published }}
     </p>
   {%- endif -%}
@@ -86,7 +102,6 @@ content_meta.html (vNext)
   {%- if page.last_updated -%}
     <p>
       <strong>{% if is_ja %}最終更新日:{% else %}Last updated:{% endif %}</strong>
-      {%- comment -%}<strong>{% if is_ja %}最終更新:{% else %}Last updated:{% endif %}</strong>{%- endcomment -%}
       {{ page.last_updated }}
     </p>
   {%- endif -%}
@@ -110,7 +125,6 @@ content_meta.html (vNext)
     {%- assign archives_sorted = archives | sort: "version" | reverse -%}
     <p>
       <strong>{% if is_ja %}アーカイブ版:{% else %}Archived versions:{% endif %}</strong>
-      {%- comment -%}<strong>{% if is_ja %}アーカイブ:{% else %}Archives:{% endif %}</strong>{%- endcomment -%}
       <span class="archive-links">
         {%- for a in archives_sorted -%}
           <a href="{{ a.url | relative_url }}" class="archive-link">v{{ a.version }}</a>
