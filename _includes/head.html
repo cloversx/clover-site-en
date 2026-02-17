@@ -8,12 +8,13 @@
 
 {%- capture page_title -%}
 {%- if page.title and page.title != "" and page.title != site_title -%}
-{%- comment -%}{%- if page.title and page.title != site_title -%}{%- endcomment -%}
+
 {{ page.title }} - {{ site_title }}
 {%- else -%}
 {{ site_title }}
 {%- endif -%}
 {%- endcapture -%}
+{%- comment -%}{%- if page.title and page.title != site_title -%}{%- endcomment -%}
 
 <title>{{ page_title | strip | escape }}</title>
 
