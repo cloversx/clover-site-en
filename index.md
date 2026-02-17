@@ -12,9 +12,9 @@ title_i18n:
     <div class="explore-title">Clover Library</div>
     <div class="explore-desc">
       {% if site.lang == "ja" %}
-        ライブラリに入る
+        閲覧
       {% else %}
-        Enter the library.
+        Browse
       {% endif %}
     </div>
   </a>
