@@ -494,6 +494,8 @@ a:hover{ text-decoration:underline; }
 
   /* カードとしての存在感を少し強める */
   padding: clamp(28px, 4vw, 44px) clamp(24px, 4vw, 40px);
+
+  box-shadow: 0 8px 28px rgba(0,0,0,0.06);
 }
 
 /* Clover Library（h1相当サイズ） */
