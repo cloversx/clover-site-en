@@ -1,0 +1,614 @@
+:root{
+  color-scheme: light dark;
+}
+
+:root{
+  --bg:#ffffff;
+  --fg:#111111;
+  --muted:#5a5a5a;
+  --border:#e9e9e9;
+  --link:#1f5fbf;
+  --code-bg:#f6f7f8;
+  --soft:#fafafa;
+}
+
+:root{
+  --border-color: var(--border);
+  --link-color: var(--link);
+  --muted-color: var(--muted);
+  --card-bg: transparent;
+}
+
+@media (prefers-color-scheme: dark){
+  :root{
+    --bg:#0c0d10;
+    --fg:#e9e9e9;
+    --muted:#b5b5b5;
+    --border:#242833;
+    --link:#8ab4f8;
+    --code-bg:#151823;
+    --soft:#0f1117;
+  }
+}
+
+*{ box-sizing:border-box; }
+html{ scroll-behavior:smooth; }
+body{
+  margin:0;
+  background:var(--bg);
+  color:var(--fg);
+  font-family: ui-sans-serif, system-ui, -apple-system, "Segoe UI", Roboto, "Noto Sans", "Hiragino Sans", "Yu Gothic", sans-serif;
+  line-height:1.85;
+  letter-spacing:0.01em;
+}
+
+.container{
+  max-width: 860px;
+  margin: 0 auto;
+  padding: 22px;
+}
+
+/* =========================
+   Header (robust fallbacks)
+   ========================= */
+
+.site-header{
+  position: sticky;
+  top: 0;
+  z-index: 10;
+
+  /* fallback: always readable */
+  background: var(--bg);
+  border-bottom: 1px solid var(--border);
+}
+
+/* backdrop-filter が効く環境だけ blur + 半透明 */
+@supports ((-webkit-backdrop-filter: blur(10px)) or (backdrop-filter: blur(10px))){
+  .site-header{
+    background: rgba(255,255,255,0.94);
+    -webkit-backdrop-filter: blur(10px);
+    backdrop-filter: blur(10px);
+  }
+  @media (prefers-color-scheme: dark){
+    .site-header{ background: rgba(12,13,16,0.94); }
+  }
+}
+
+/* color-mix が効く環境ならより自然な半透明へ */
+@supports (background: color-mix(in srgb, white 94%, transparent)){
+  .site-header{
+    background: color-mix(in srgb, var(--bg) 94%, transparent);
+  }
+}
+
+.site-header .container{
+  display:flex;
+  align-items:center;
+  justify-content:space-between;
+  gap:16px;
+}
+
+/* モバイルなどで横幅が極端に狭い場合に、「Library / About」などのナビ部分をタイトルの下に表示する。 */
+/*
+@media (max-width: 560px){
+  .site-header .container{
+    flex-direction: column;
+    align-items: flex-start;
+  }
+  .nav a{ margin-left: 0; margin-right: 12px; }
+}
+*/
+
+.site-title{
+  font-weight: 750;
+  text-decoration:none;
+  color:var(--fg);
+  letter-spacing:0.2px;
+}
+
+.nav a{
+  margin-left: 12px;
+  text-decoration:none;
+  color:var(--muted);
+}
+.nav a:hover{ color:var(--fg); }
+
+.site-footer{
+  margin-top: 54px;
+  padding: 18px 0;
+  border-top: 1px solid var(--border);
+  color: var(--muted);
+}
+
+a{ color:var(--link); }
+a:hover{ text-decoration:underline; }
+
+.page h1, .content h1{
+  font-size: clamp(1.6rem, 2.4vw, 2.15rem);
+  line-height: 1.25;
+  margin: 22px 0 12px;
+  letter-spacing: -0.01em;
+}
+
+.content{
+  font-size: 1.02rem;
+}
+
+.content p{ margin: 0.95em 0; }
+.content ul, .content ol{ padding-left: 1.25em; }
+.content li{ margin: 0.35em 0; }
+
+.content h2{
+  margin-top: 2.1em;
+  padding-top: 0.25em;
+  border-top: 1px solid var(--border);
+  font-size: 1.35rem;
+}
+.content h3{
+  margin-top: 1.5em;
+  font-size: 1.15rem;
+}
+
+.content blockquote{
+  margin: 1.2em 0;
+  padding: 0.8em 1em;
+  border-left: 3px solid var(--border);
+  background: var(--soft);
+  color: var(--muted);
+}
+
+.content code{
+  font-family: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, "Noto Sans Mono", monospace;
+  font-size: 0.95em;
+  background: var(--code-bg);
+  padding: 0.15em 0.35em;
+  border-radius: 6px;
+}
+
+.content pre{
+  background: var(--code-bg);
+  border: 1px solid var(--border);
+  padding: 14px 16px;
+  border-radius: 12px;
+  overflow-x: auto;
+}
+.content pre code{
+  background: transparent;
+  padding: 0;
+}
+
+.content img{
+  max-width: 100%;
+  height: auto;
+  border-radius: 14px;
+  border: 1px solid var(--border);
+}
+
+.content-meta{
+  font-size: 0.95rem;
+  color: var(--muted);
+  padding: 12px 0 10px;
+  border-bottom: 1px solid var(--border);
+  margin-bottom: 18px;
+}
+
+/* content_meta の Archives リンクが詰まるのを防ぐ 
+   最初のリンクの左が詰まるしmargin-leftも入れるとリンク間があきすぎてしまうのでテンプレで &nbsp; を入れて対応
+*/
+.content-meta a{
+  display: inline-block;
+  /* margin-right: 0.5rem; */
+}
+
+.tag{
+  display: inline-block;
+  padding: 2px 10px;
+  border: 1px solid var(--border);
+  border-radius: 999px;
+  font-size: 0.85rem;
+  margin-right: 6px;
+  margin-bottom: 6px;
+  color: var(--muted);
+  background: transparent;
+}
+
+.tag-row {
+  margin-top: 0.35rem;
+  display: flex;
+  gap: 0.35rem;
+  flex-wrap: wrap;
+}
+
+/* =========================================
+   Tag pills (theme-safe)
+   ========================================= */
+
+.tag-pill{
+  display: inline-block;
+  padding: 0.15rem 0.5rem;
+  margin: 0.1rem 0.2rem;
+  border-radius: 6px;
+
+  cursor: pointer;
+  user-select: none;
+
+  /* fallback: always readable */
+  color: var(--fg);
+  border: 1px solid var(--border);
+  background: var(--soft);
+  box-shadow: 0 1px 0 rgba(0,0,0,0.08);
+
+  transition:
+    transform 0.05s ease,
+    box-shadow 0.05s ease,
+    background 0.05s ease,
+    border-color 0.15s ease;
+}
+
+/* color-mix が効く環境なら fg 由来で微調整 */
+@supports (background: color-mix(in srgb, white 6%, transparent)){
+  .tag-pill{
+    border-color: color-mix(in srgb, var(--fg) 22%, transparent);
+    background: color-mix(in srgb, var(--fg) 6%, transparent);
+    box-shadow: 0 1px 0 color-mix(in srgb, var(--fg) 18%, transparent);
+  }
+}
+
+.tag-pill:hover{
+  background: rgba(0,0,0,0.06);
+}
+@media (prefers-color-scheme: dark){
+  .tag-pill:hover{
+    background: rgba(255,255,255,0.06);
+  }
+}
+@supports (background: color-mix(in srgb, white 10%, transparent)){
+  .tag-pill:hover{
+    background: color-mix(in srgb, var(--fg) 10%, transparent);
+  }
+}
+
+/* active（クリック瞬間） */
+.tag-pill:active {
+  transform: translateY(1px);
+  box-shadow: 0 0 0 transparent;
+}
+
+/* 選択中（押し込まれた状態） */
+.tag-pill.is-active{
+  transform: translateY(1px);
+  font-weight: 600;
+
+  /* fallback */
+  background: rgba(0,0,0,0.10);
+  box-shadow: inset 0 1px 2px rgba(0,0,0,0.25);
+}
+@media (prefers-color-scheme: dark){
+  .tag-pill.is-active{
+    background: rgba(255,255,255,0.10);
+    box-shadow: inset 0 1px 2px rgba(0,0,0,0.45);
+  }
+}
+@supports (background: color-mix(in srgb, white 14%, transparent)){
+  .tag-pill.is-active{
+    background: color-mix(in srgb, var(--fg) 14%, transparent);
+    box-shadow: inset 0 1px 2px color-mix(in srgb, var(--fg) 30%, transparent);
+  }
+}
+
+.tag-panel { margin: 1rem 0; }
+.tag-list { display: flex; flex-wrap: wrap; gap: .5rem; margin-top: .5rem; }
+
+.home-links{
+  display:flex;
+  gap:10px;
+  margin: 14px 0 6px;
+  flex-wrap: wrap;
+}
+
+.btn{
+  display:inline-block;
+  padding: 8px 12px;
+  border: 1px solid var(--border);
+  border-radius: 12px;
+  text-decoration:none;
+  color: var(--fg);
+  background: transparent;
+}
+
+/* fallback */
+.btn:hover{
+  text-decoration:none;
+  border-color: var(--fg);
+}
+
+/* color-mix が効くなら元の意図 */
+@supports (border-color: color-mix(in srgb, white 60%, black)){
+  .btn:hover{
+    border-color: color-mix(in srgb, var(--border) 60%, var(--fg));
+  }
+}
+
+.btn.ghost{
+  color: var(--muted);
+}
+
+.content-list{ list-style:none; padding-left:0; margin: 0; }
+.content-list li{
+  border: 1px solid var(--border);
+  border-radius: 14px;
+  padding: 14px 16px;
+  margin: 12px 0;
+  background: transparent;
+}
+.content-list a{
+  font-weight: 700;
+  text-decoration:none;
+}
+.content-list a:hover{ text-decoration:underline; }
+.muted{ color: var(--muted); margin-top: 6px; }
+
+.archive-list {
+  margin-top: 1rem;
+}
+
+.archive-item {
+  margin-bottom: 1.2rem;
+}
+
+.archive-title {
+  font-weight: 500;
+}
+
+.archive-summary {
+  margin-top: 0.2rem;
+  font-size: 0.95rem;
+}
+
+.archive-notice { color: #b00020; }
+
+.section-divider{
+  border: 0;
+  border-top: 1px solid var(--border);
+  margin: 22px 0;
+}
+
+/* archive links */
+.archive-links {
+  display: inline-flex;
+  gap: 0.6em;
+  flex-wrap: wrap;
+}
+
+.archive-link {
+  padding: 0.1em 0.4em;
+  border-radius: 6px;
+}
+
+.archive-link:hover {
+  background: rgba(0,0,0,0.05);
+}
+@media (prefers-color-scheme: dark){
+  .archive-link:hover{
+    background: rgba(255,255,255,0.05);
+  }
+}
+
+/* featured cards */
+.content-card{ /* 既存があれば上書き不要 */ }
+
+.content-card.is-featured{
+  background: var(--soft);
+  /*
+  border-left: 4px solid currentColor;
+  padding-left: 14px;
+  */
+}
+
+.card-top{
+  display:flex;
+  align-items:baseline;
+  justify-content:space-between;
+  gap: 12px;
+}
+
+.badge{
+  font-size: 0.78rem;
+  color: var(--muted);
+  border: 1px solid var(--border);
+  border-radius: 999px;
+  padding: 2px 8px;
+  white-space: nowrap;
+}
+
+.badge.is-current {
+  /* no explicit colors to keep theme-neutral */
+}
+
+.badge.is-archive {
+  /* no explicit colors to keep theme-neutral */
+}
+
+/* =========================================
+   Search UI
+   ========================================= */
+
+.search-box {
+  display: flex;
+  gap: 0.75rem;
+  align-items: center;
+  flex-wrap: wrap;
+  margin: 1rem 0 1rem;
+}
+
+.search-input {
+  flex: 1 1 320px;
+  padding: 0.6rem 0.75rem;
+  border-radius: 10px;
+}
+
+.search-toggle {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.4rem;
+  user-select: none;
+  color: var(--fg);
+}
+
+.search-select{
+  padding: .35rem .5rem;
+  border-radius: .5rem;
+  background: transparent;
+}
+
+/* Dark-mode-safe controls (fallback first) */
+.search-input,
+.search-select{
+  color: var(--fg);
+  background: var(--bg);
+  border: 1px solid var(--border);
+}
+
+/* if color-mix supported, refine border */
+@supports (border-color: color-mix(in srgb, white 18%, transparent)){
+  .search-input,
+  .search-select{
+    border-color: color-mix(in srgb, var(--fg) 18%, transparent);
+  }
+}
+
+/* option visibility insurance */
+.search-select option{
+  color: var(--fg);
+  background: var(--bg);
+}
+
+/* checkbox accent for consistency */
+.search-toggle input[type="checkbox"]{
+  accent-color: var(--link);
+}
+
+/* =========================================
+   Explore cards (Library navigation)
+   ========================================= */
+
+.explore-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+  gap: 12px;
+  margin: 12px 0 18px 0;
+}
+
+.explore-card {
+  display: block;
+  padding: 14px 16px;
+  border: 1px solid var(--border-color, #e0e0e0);
+  border-radius: 10px;
+  text-decoration: none;
+  color: inherit;
+  background: var(--card-bg, #fff);
+
+  transition:
+    border-color 0.15s ease,
+    box-shadow 0.15s ease,
+    transform 0.05s ease;
+}
+
+.explore-card:hover {
+  border-color: var(--link-color, #2563eb);
+  box-shadow: 0 3px 10px rgba(0,0,0,0.06);
+  transform: translateY(-1px);
+}
+
+.explore-card:active {
+  transform: translateY(0);
+  box-shadow: 0 1px 4px rgba(0,0,0,0.08);
+}
+
+.explore-title {
+  font-weight: 600;
+  font-size: 1.05rem;
+  margin-bottom: 4px;
+}
+
+.explore-desc {
+  font-size: 0.92rem;
+  color: var(--muted-color, #666);
+  line-height: 1.4;
+}
+
+/* =========================================
+   Top entrance card (Clover Library)
+   ========================================= */
+
+.home-entrance{
+  /* 上寄せ・左右中央 */
+  display: flex;
+  justify-content: center;
+  align-items: flex-start;
+
+  /* 上に少し余白を置く（完全上端だと詰まりすぎるため） */
+  padding-top: clamp(40px, 8vh, 100px);
+  padding-left: 16px;
+  padding-right: 16px;
+}
+
+.home-entrance .explore-card{
+  max-width: 560px;
+  width: 100%;
+
+  /* カード内中央配置 */
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+
+  text-align: center;
+
+  /* カードとしての存在感を少し強める */
+  padding: clamp(28px, 4vw, 44px) clamp(24px, 4vw, 40px);
+
+  box-shadow: 0 8px 28px rgba(0,0,0,0.06);
+
+  transition:
+    border-color 0.2s ease,
+    box-shadow 0.25s ease,
+    background 0.25s ease;
+}
+
+/* hover時：浮かない、光る（fallback first） */
+.home-entrance .explore-card:hover{
+  transform: none;
+  border-color: var(--link);
+  box-shadow:
+    0 6px 24px rgba(0,0,0,0.06),
+    0 0 0 1px rgba(0,0,0,0.06);
+  background: var(--soft);
+}
+
+/* color-mix が使えるならより繊細に */
+@supports (border-color: color-mix(in srgb, white 35%, black)){
+  .home-entrance .explore-card:hover{
+    border-color: color-mix(in srgb, var(--link) 35%, var(--border));
+    box-shadow:
+      0 6px 24px rgba(0,0,0,0.06),
+      0 0 0 1px color-mix(in srgb, var(--link) 15%, transparent);
+    background: color-mix(in srgb, var(--soft) 70%, transparent);
+  }
+}
+
+/* Clover Library（h1相当サイズ） */
+.home-entrance .explore-title{
+  font-size: clamp(1.6rem, 2.4vw, 2.15rem); /* h1と同じ式 */
+  font-weight: 700;
+  line-height: 1.25;
+  letter-spacing: -0.01em;
+  margin-bottom: 0.4em;
+}
+
+/* Browse / 閲覧（バランスのいいサブサイズ） */
+.home-entrance .explore-desc{
+  font-size: clamp(0.95rem, 1.2vw, 1.05rem);
+  color: var(--muted);
+  letter-spacing: 0.02em;
+}
