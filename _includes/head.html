@@ -92,8 +92,12 @@ OG image:
 hreflang:
 - 現行版だけ（is_archive != true）
 - 自言語は site.lang 固定（repo分離運用）
-- alt_url は相対/絶対どちらでもOK → absolute_url で正規化
+- alt_url は相対/絶対どちらでもOK → absolute_url で正規化。各言語はrepo分離なので原則絶対指定。例外のみ相対。
 - x-default は英語に寄せる
+
+もしpage.langを優先する場合は
+  {%- assign lang = page.lang | default: site.lang | default: "en" -%}
+  <link rel="alternate" hreflang="{{ lang }}" href="{{ canonical | escape }}">
 {%- endcomment -%}
 {%- if page.is_archive != true -%}
   <link rel="alternate" hreflang="{{ site.lang }}" href="{{ canonical | escape }}">
