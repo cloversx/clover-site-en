@@ -65,7 +65,7 @@ Explore links (Search / Tags / Archive)
 
 </div>
 
----
+{% comment %}---{% endcomment %}
 
 {%- assign featured_items = site.pages
   | where: "layout", "content"
